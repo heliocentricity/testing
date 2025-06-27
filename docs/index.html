@@ -10,10 +10,9 @@
   <style>
     .font-lato { font-family: 'Lato', sans-serif; }
     th.sortable { cursor: pointer; user-select: none; }
-
     .table-with-suns {
       position: relative;
-      overflow: visible;    /* let the tooltip show */
+      overflow: visible;    /* allow the tooltip to show */
     }
     .table-with-suns::after {
       content: '';
@@ -52,14 +51,14 @@
         </button>
       </div>
       <!-- Panel under tabs -->
-      <div class="relative bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-hidden">
+      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-hidden">
         <!-- Sub-tabs -->
-        <div class="flex border-b border-slate-700 px-4 py-2">
+        <div id="subtabs" class="relative flex border-b border-slate-700 px-4 py-2">
           <!-- Tournament date -->
           <div id="sub-tourney" class="inline-flex border border-slate-700 rounded-lg overflow-hidden">
             <button id="sub-date"
                     class="px-3 py-1 text-sm bg-yellow-400 text-gray-900">
-              6/26/25 - 7/23/25
+              6/26/25 – 7/23/25
             </button>
           </div>
           <!-- Streak subtoggles -->
@@ -73,17 +72,16 @@
               All Time
             </button>
           </div>
+          <!-- Question-mark icon, hidden by default; will show only on streaks view -->
+          <span id="tooltip-icon" class="hidden absolute right-2 top-1/2 transform -translate-y-1/2 group inline-block">
+            <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">
+              ?
+            </span>
+            <span class="hidden group-hover:block absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 px-3 py-2 text-xs text-gray-900 bg-yellow-400 rounded whitespace-nowrap z-10">
+              A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you’ve raced today but your streak hasn’t updated yet.
+            </span>
+          </span>
         </div>
-
-        <!-- Question-mark icon for streaks only -->
-        <span id="streak-tooltip-icon" class="absolute top-4 right-2 hidden group">
-          <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">
-            ?
-          </span>
-          <span class="hidden group-hover:block absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 px-3 py-2 text-xs text-gray-900 bg-yellow-400 rounded max-w-xs z-10">
-            A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you’ve raced today but your streak hasn’t updated yet.
-          </span>
-        </span>
 
         <!-- Table container with sun background -->
         <div id="table-container" class="table-with-suns">
@@ -105,10 +103,10 @@
           Show days only
         </button>
         <div class="text-xs text-gray-400 mt-2">
-          June 25th 8 AM (PST/PDT) - July 23rd 8 AM (PST/PDT)
+          June 25th 8 AM (PST/PDT) – July 23rd 8 AM (PST/PDT)
         </div>
       </div>
-      <!-- … other info boxes unchanged … -->
+      <!-- ... other info boxes unchanged ... -->
     </div>
   </div>
 
@@ -152,9 +150,9 @@
             t2 = document.getElementById('tab-streak'),
             st = document.getElementById('sub-tourney'),
             ss = document.getElementById('sub-streaks'),
-            icon = document.getElementById('streak-tooltip-icon');
+            icon = document.getElementById('tooltip-icon');
 
-      if(mode==='tourney'){
+      if (mode === 'tourney') {
         t1.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400';
         t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600 ml-2';
         st.classList.remove('hidden');
@@ -168,15 +166,14 @@
         icon.classList.remove('hidden');
       }
     }
-
     function updateSubtabs(){
-      if(mode==='tourney') return;
+      if (mode === 'tourney') return;
       const sc = document.getElementById('sub-current'),
             sa = document.getElementById('sub-all');
-      sc.className = streakView==='current'
+      sc.className = streakView === 'current'
         ? 'px-3 py-1 text-sm bg-yellow-400 text-gray-900'
         : 'px-3 py-1 text-sm bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
-      sa.className = streakView==='allTime'
+      sa.className = streakView === 'allTime'
         ? 'px-3 py-1 text-sm bg-yellow-400 text-gray-900'
         : 'px-3 py-1 text-sm bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
     }
@@ -196,27 +193,31 @@
         .then(d => {
           data = d;
           // tournament ranks
-          let lastD=null, lastR=0;
-          data.board.forEach((it,i)=>{
-            const rk = it.delta!==lastD?i+1:lastR;
-            it.initialRank=rk; lastD=it.delta; lastR=rk;
+          let lastD = null, lastR = 0;
+          data.board.forEach((it, i) => {
+            const rk = it.delta !== lastD ? i + 1 : lastR;
+            it.initialRank = rk;
+            lastD = it.delta;
+            lastR = rk;
           });
           // streak ranks + titles
-          ['current','allTime'].forEach(view=>{
-            if(!data.streaks?.[view]) return;
-            let lastL=null, lastRk=0;
-            data.streaks[view].forEach((it,i)=>{
-              const len = it.length||0;
-              const rk  = len!==lastL?i+1:lastRk;
-              it.initialRank=rk; lastL=len; lastRk=rk;
-              const b = data.board.find(b=>b.username===it.username);
-              it.title = b?.title||'';
+          ['current','allTime'].forEach(view => {
+            if (!data.streaks?.[view]) return;
+            let lastL = null, lastRk = 0;
+            data.streaks[view].forEach((it, i) => {
+              const len = it.length || 0;
+              const rk  = len !== lastL ? i + 1 : lastRk;
+              it.initialRank = rk;
+              lastL = len;
+              lastRk = rk;
+              const b = data.board.find(b => b.username === it.username);
+              it.title = b?.title || '';
             });
           });
-          document.getElementById('updated-at').textContent = data.last_updated||'Unknown';
+          document.getElementById('updated-at').textContent = data.last_updated || 'Unknown';
           render();
         })
-        .catch(e=>{
+        .catch(e => {
           console.error('Failed to load data.json', e);
           document.getElementById('updated-at').textContent = 'Error';
         });
@@ -224,9 +225,10 @@
 
     // --- Render Dispatcher ---
     function render(){
-      if(!data) return;
-      updateTabs(); updateSubtabs();
-      if(mode==='tourney'){
+      if (!data) return;
+      updateTabs();
+      updateSubtabs();
+      if (mode === 'tourney') {
         renderTourneyHead(); renderTourneyBody();
       } else {
         renderStreakHead(); renderStreakBody();
@@ -235,18 +237,173 @@
 
     // --- Tournament Head & Body (unchanged) ---
     function renderTourneyHead(){
-      /* ...unchanged... */
+      document.getElementById('leaderboard-head').innerHTML = `
+        <tr>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
+          <th id="th-join"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+            Member Since <span>${tourneySort.key==='join'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+          <th id="th-last"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+            Last Race <span>${tourneySort.key==='last'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+          <th id="th-races" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
+            Races <span>${tourneySort.key==='races'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+        </tr>`;
+      ['join','last','races'].forEach(k => {
+        document.getElementById(`th-${k}`).onclick = () => {
+          if (tourneySort.key === k) tourneySort.dir *= -1;
+          else { tourneySort.key = k; tourneySort.dir = 1; }
+          render();
+        };
+      });
     }
     function renderTourneyBody(){
-      /* ...unchanged... */
+      const rows = [...data.board];
+      rows.sort((a,b)=>{
+        let av=0, bv=0;
+        if (tourneySort.key==='races') { av=a.delta; bv=b.delta; }
+        else if (tourneySort.key==='join') { av=a.joinStamp||0; bv=b.joinStamp||0; }
+        else { av=a.lastActivity||0; bv=b.lastActivity||0; }
+        return tourneySort.dir * (av - bv);
+      });
+      const tb = document.getElementById('leaderboard-body');
+      tb.innerHTML = '';
+      rows.forEach(it => {
+        const rank = it.initialRank;
+        let base='', hover='hover:bg-slate-700';
+        if (rank===1) { base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
+        else if (rank===2) { base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
+        else if (rank===3) { base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
+        let ord = `${rank}`;
+        if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
+        if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
+        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        const key = it.role.toLowerCase().replace(/\s+/g,'');
+        const rc = {
+          officer:    'border-2 border-blue-400 text-blue-400 bg-transparent',
+          captain:    'border-2 border-purple-400 text-purple-400 bg-transparent',
+          vicecaptain:'border-2 border-green-400 text-green-400 bg-transparent',
+          member:     'text-gray-400'
+        };
+        const badge = rc[key] || rc.member;
+        let label = it.role.charAt(0).toUpperCase() + it.role.slice(1);
+        if (key==='vicecaptain') label='Vice Captain';
+        const jd = it.joinStamp ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
+        const ld = it.lastActivity ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
+        const tc = rank <= 3 ? 'text-yellow-400/70' : 'text-gray-400';
+        const titleHtml = it.title ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
+        const tr = document.createElement('tr');
+        tr.className = `cursor-pointer ${base} ${hover} align-middle`;
+        tr.onclick = () => window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
+        tr.title = 'View Nitro Type profile';
+        tr.innerHTML = `
+          <td class="px-4 py-3">${ord}</td>
+          <td class="px-4 py-3 text-yellow-300 font-semibold">
+            ${it.displayName}${titleHtml}
+          </td>
+          <td class="px-4 py-3">
+            <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">${label}</span>
+          </td>
+          <td class="px-4 py-3">${jd}</td>
+          <td class="px-4 py-3">${ld}</td>
+          <td class="px-4 py-3 text-right">${it.delta||0}</td>
+        `;
+        tb.appendChild(tr);
+      });
     }
 
-    // --- Streaks Head & Body (unchanged except for not touching the icon) ---
+    // --- Streaks Head & Body ---
     function renderStreakHead(){
-      /* ...unchanged... */
+      document.getElementById('leaderboard-head').innerHTML = `
+        <tr>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
+          <th id="th-done"   class="px-4 py-3 text-center text-sm font-medium text-gray-300 sortable">
+            Done Today <span>${streakSort.key==='done'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+          <th id="th-start"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+            Start <span>${streakSort.key==='start'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+          <th id="th-end"    class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+            End <span>${streakSort.key==='end'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+          <th id="th-length"class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
+            Length <span>${streakSort.key==='length'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+        </tr>`;
+      ['done','start','end','length'].forEach(k=>{
+        document.getElementById(`th-${k}`).onclick = ()=>{
+          if (streakSort.key === k) streakSort.dir *= -1;
+          else { streakSort.key = k; streakSort.dir = 1; }
+          render();
+        };
+      });
     }
     function renderStreakBody(){
-      /* ...unchanged... */
+      const list = [...(data.streaks[streakView]||[])];
+      list.sort((a,b)=>{
+        let av=0, bv=0;
+        if (streakSort.key==='length') { av=a.length; bv=b.length; }
+        else if (streakSort.key==='start') { av=a.start||0; bv=b.start||0; }
+        else if (streakSort.key==='end') { av=a.end||0; bv=b.end||0; }
+        else { // done
+          av = a.racedToday ? 1 : 0;
+          bv = b.racedToday ? 1 : 0;
+        }
+        return streakSort.dir * (av - bv);
+      });
+      const tb = document.getElementById('leaderboard-body');
+      tb.innerHTML = '';
+      list.forEach(it=>{
+        const rank = it.initialRank;
+        let base='', hover='hover:bg-slate-700';
+        if (rank===1) { base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
+        else if (rank===2) { base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
+        else if (rank===3) { base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
+        let ord = `${rank}`;
+        if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
+        if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
+        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        const key = it.role.toLowerCase().replace(/\s+/g,'');
+        const rc = {
+          officer:    'border-2 border-blue-400 text-blue-400 bg-transparent',
+          captain:    'border-2 border-purple-400 text-purple-400 bg-transparent',
+          vicecaptain:'border-2 border-green-400 text-green-400 bg-transparent',
+          member:     'text-gray-400'
+        };
+        const badge = rc[key] || rc.member;
+        let label = it.role.charAt(0).toUpperCase() + it.role.slice(1);
+        if (key==='vicecaptain') label='Vice Captain';
+        const sd = it.start ? new Date(it.start).toLocaleDateString() : 'N/A';
+        const ed = it.end   ? new Date(it.end).toLocaleDateString()   : 'N/A';
+        const tc = rank <= 3 ? 'text-yellow-400/70' : 'text-gray-400';
+        const titleHtml = it.title ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
+        const done = it.racedToday
+          ? '<span class="text-green-400">✓</span>'
+          : '<span class="text-gray-500">-</span>';
+        const tr = document.createElement('tr');
+        tr.className = `cursor-pointer ${base} ${hover} align-middle`;
+        tr.onclick = () => window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
+        tr.title = 'View Nitro Type profile';
+        tr.innerHTML = `
+          <td class="px-4 py-3">${ord}</td>
+          <td class="px-4 py-3 text-yellow-300 font-semibold">
+            ${it.displayName}${titleHtml}
+          </td>
+          <td class="px-4 py-3">
+            <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">${label}</span>
+          </td>
+          <td class="px-4 py-3 text-center">${done}</td>
+          <td class="px-4 py-3">${sd}</td>
+          <td class="px-4 py-3">${ed}</td>
+          <td class="px-4 py-3 text-right">${it.length||0}</td>
+        `;
+        tb.appendChild(tr);
+      });
     }
   </script>
 </body>
