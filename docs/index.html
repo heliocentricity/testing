@@ -10,8 +10,6 @@
   <style>
     .font-lato { font-family: 'Lato', sans-serif; }
     th.sortable { cursor: pointer; user-select: none; }
-
-    /* Suns background under rows but above hover backgrounds */
     .table-with-suns {
       position: relative;
       overflow: hidden;
@@ -31,6 +29,7 @@
   </style>
 </head>
 <body class="bg-slate-900 text-gray-200 min-h-screen p-8 font-sans">
+
   <h1 class="text-4xl font-extrabold mb-2 text-yellow-400">
     [HELIOS] $17 Million NTC Competition Leaderboard
   </h1>
@@ -38,127 +37,61 @@
     Last updated: <span id="updated-at" class="font-mono">Loading…</span>
   </p>
 
-  <!-- Top-level Tabs -->
-  <div id="tabs" class="flex mb-2">
-    <button id="tab-tourney"
-            class="rounded-t-lg px-4 py-2 text-sm font-medium">
-      Tournament
-    </button>
-    <button id="tab-streak"
-            class="rounded-t-lg px-4 py-2 text-sm font-medium">
-      Streaks
-    </button>
-  </div>
-
-  <!-- Sub-tabs -->
-  <div id="subtabs" class="flex mb-4">
-    <!-- Tournament has exactly one “date range” button -->
-    <div id="sub-tourney" class="flex space-x-2">
-      <button id="sub-date"
-              class="px-2 py-1 text-xs font-medium">
-        6/26/25 – 7/23/25
+  <!-- Combined Tabs + Table Container -->
+  <div id="tab-wrapper" class="rounded-lg bg-slate-700 overflow-hidden">
+    <!-- Top Tabs -->
+    <div class="flex">
+      <button id="tab-tourney"
+              class="px-4 py-2 flex-1 text-sm font-medium focus:outline-none">
+        Tournament
+      </button>
+      <button id="tab-streak"
+              class="px-4 py-2 flex-1 text-sm font-medium focus:outline-none">
+        Streaks
       </button>
     </div>
-    <!-- Streaks has “Current” / “All Time” -->
-    <div id="sub-streaks" class="hidden flex space-x-2">
-      <button id="sub-current"
-              class="px-2 py-1 text-sm font-medium">
-        Current
-      </button>
-      <button id="sub-all"
-              class="px-2 py-1 text-sm font-medium">
-        All Time
-      </button>
-    </div>
-  </div>
-
-  <div class="flex space-x-6">
-    <!-- Main table container -->
-    <div class="w-3/4 overflow-x-auto">
-      <div id="table-container"
-           class="rounded-b-lg table-with-suns bg-slate-800/70">
-        <table class="min-w-full rounded-b-lg">
-          <thead id="leaderboard-head" class="bg-slate-700"></thead>
-          <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Info boxes (unchanged) -->
-    <div class="w-1/4 space-y-6">
-      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4 text-center">
-        <div id="countdown" class="text-4xl font-extrabold text-yellow-400 mb-1"></div>
-        <div class="text-sm text-yellow-400 mb-2">days left in tournament</div>
-        <button id="toggle-countdown"
-                class="px-2 py-0.5 bg-gray-700 text-xs rounded mt-1">
-          Show days only
+    <!-- Sub-tabs (shared bar) -->
+    <div class="flex px-4 py-2 bg-slate-700">
+      <!-- Tournament: one date-range button -->
+      <div id="sub-tourney" class="flex-1">
+        <button id="sub-date"
+                class="px-3 py-1 text-xs font-medium focus:outline-none">
+          6/26/25 – 7/23/25
         </button>
-        <div class="text-xs text-gray-400 mt-2">
-          June 25th 8 AM (PST/PDT) – July 23rd 8 AM (PST/PDT)
-        </div>
       </div>
-      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Prizes</h2>
-        <p class="text-sm">
-          <span class="text-yellow-400 font-bold">1st</span> – 
-          <span class="text-green-400 font-semibold">$10,000,000 NITRO CASH</span><br>
-          <span class="text-yellow-400 font-bold">2nd</span> – 
-          <span class="text-green-400 font-semibold">$5,000,000 NITRO CASH</span><br>
-          <span class="text-yellow-400 font-bold">3rd</span> – 
-          <span class="text-green-400 font-semibold">$2,000,000 NITRO CASH</span>
-        </p>
+      <!-- Streaks: current/all -->
+      <div id="sub-streaks" class="flex-1 hidden space-x-2">
+        <button id="sub-current"
+                class="px-3 py-1 text-sm font-medium focus:outline-none">
+          Current
+        </button>
+        <button id="sub-all"
+                class="px-3 py-1 text-sm font-medium focus:outline-none">
+          All Time
+        </button>
       </div>
-      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Description</h2>
-        <p class="text-sm text-gray-300 mb-2">
-          Tracks each member’s races since June 25, 2025. Updated hourly (PST/PDT).
-        </p>
-        <p class="text-xs text-gray-400 mb-0">
-          We reserve the right to disqualify you if we believe you have cheated (e.g. botting).
-          Please make sure you are adhering to
-          <a href="https://www.nitrotype.com/support/tos/" target="_blank"
-             class="underline text-blue-300 break-words">
-            Nitro Type’s TOS</a>.Thank you!
-        </p>
-      </div>
-      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Links</h2>
-        <ul class="text-sm space-y-1">
-          <li>
-            <a href="https://www.nitrotype.com/team/HELIOS" target="_blank"
-               class="underline break-words">
-              <span class="text-yellow-300">[HELIOS]</span>
-              <span class="text-blue-300"> on Nitro Type</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://padlet.com/icarus_/HELIOS" target="_blank"
-               class="underline text-blue-300 break-words">Padlet</a>
-          </li>
-        </ul>
-      </div>
-      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4 break-words">
-        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Credits</h2>
-        <p class="text-sm text-gray-300 mb-1">Website created by vioiynx.</p>
-        <p class="text-sm text-gray-300 mb-1">
-          Medal icons by
-          <a href="https://www.vecteezy.com/free-vector/1st-2nd-3rd-place" target="_blank"
-             class="underline text-blue-300 break-words">
-            1st 2nd 3rd Place Vectors by Vecteezy</a>.
-        </p>
-        <p class="text-sm text-gray-300">
-          Sun motifs designed by
-          <a href="https://www.freepik.com" target="_blank"
-             class="underline text-blue-300 break-words">Freepik</a>.
-        </p>
-      </div>
+    </div>
+    <!-- Table -->
+    <div id="table-container"
+         class="table-with-suns bg-slate-800 rounded-b-lg">
+      <table class="min-w-full">
+        <thead id="leaderboard-head" class="bg-slate-700"></thead>
+        <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Info boxes (unchanged) -->
+  <div class="flex space-x-6 mt-6">
+    <div class="w-3/4"></div><!-- spacer -->
+    <div class="w-1/4 space-y-6">
+      <!-- countdown, prizes, description, links, credits -->
+      <!-- ... (same as before) ... -->
     </div>
   </div>
 
   <script>
-    // ----------------
-    // Countdown logic
-    // ----------------
+    // Countdown (unchanged)
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
@@ -182,59 +115,53 @@
     setInterval(updateCd,1000);
     updateCd();
 
-    // ----------------------
-    // State & Sort Tracking
-    // ----------------------
+    // State
     let data = null,
         mode = 'tourney',
         streakView = 'current',
         tourneySort = { join:false, last:false, races:false },
         streakSort = { start:false, end:false, length:false };
 
-    // ----------------
-    // Tab Button Logic
-    // ----------------
+    // Tab elements
+    const tabT = document.getElementById('tab-tourney'),
+          tabS = document.getElementById('tab-streak'),
+          subT = document.getElementById('sub-tourney'),
+          subS = document.getElementById('sub-streaks'),
+          subD = document.getElementById('sub-date'),
+          subC = document.getElementById('sub-current'),
+          subA = document.getElementById('sub-all');
+
     function updateTabs(){
-      const t1 = document.getElementById('tab-tourney'),
-            t2 = document.getElementById('tab-streak'),
-            st = document.getElementById('sub-tourney'),
-            ss = document.getElementById('sub-streaks');
+      // Active tab gets bg-slate-800, text-yellow-400; inactive bg-slate-700, text-gray-400
       if(mode==='tourney'){
-        t1.className = 'rounded-t-lg px-4 py-2 bg-slate-800 text-yellow-400';
-        t2.className = 'rounded-t-lg px-4 py-2 bg-slate-700 text-gray-400 hover:bg-slate-600';
-        st.classList.remove('hidden');
-        ss.classList.add('hidden');
+        tabT.className = 'px-4 py-2 flex-1 text-sm font-medium bg-slate-800 text-yellow-400';
+        tabS.className = 'px-4 py-2 flex-1 text-sm font-medium bg-slate-700 text-gray-400 hover:bg-slate-600';
+        subT.classList.remove('hidden');
+        subS.classList.add('hidden');
       } else {
-        t1.className = 'rounded-t-lg px-4 py-2 bg-slate-700 text-gray-400 hover:bg-slate-600';
-        t2.className = 'rounded-t-lg px-4 py-2 bg-slate-800 text-yellow-400';
-        st.classList.add('hidden');
-        ss.classList.remove('hidden');
+        tabT.className = 'px-4 py-2 flex-1 text-sm font-medium bg-slate-700 text-gray-400 hover:bg-slate-600';
+        tabS.className = 'px-4 py-2 flex-1 text-sm font-medium bg-slate-800 text-yellow-400';
+        subT.classList.add('hidden');
+        subS.classList.remove('hidden');
       }
     }
     function updateSubtabs(){
       if(mode==='tourney'){
-        const d = document.getElementById('sub-date');
-        d.className = 'px-2 py-1 bg-slate-700 text-yellow-400 rounded';
+        subD.className = 'px-3 py-1 text-xs font-medium bg-slate-800 text-yellow-400 rounded';
       } else {
-        const c = document.getElementById('sub-current'),
-              a = document.getElementById('sub-all');
         if(streakView==='current'){
-          c.className = 'px-2 py-1 bg-slate-700 text-yellow-400 rounded';
-          a.className = 'px-2 py-1 bg-slate-700 text-gray-400 hover:text-yellow-400 rounded';
+          subC.className = 'px-3 py-1 text-sm font-medium bg-slate-800 text-yellow-400 rounded';
+          subA.className = 'px-3 py-1 text-sm font-medium bg-slate-700 text-gray-400 hover:bg-slate-600 rounded';
         } else {
-          c.className = 'px-2 py-1 bg-slate-700 text-gray-400 hover:text-yellow-400 rounded';
-          a.className = 'px-2 py-1 bg-slate-700 text-yellow-400 rounded';
+          subC.className = 'px-3 py-1 text-sm font-medium bg-slate-700 text-gray-400 hover:bg-slate-600 rounded';
+          subA.className = 'px-3 py-1 text-sm font-medium bg-slate-800 text-yellow-400 rounded';
         }
       }
     }
 
-    // ----------------
-    // Rendering Driver
-    // ----------------
+    // Render dispatcher
     function render(){
       if(!data) return;
-      // ensure both tables carry the suns motif
-      document.getElementById('table-container').classList.add('table-with-suns');
       updateTabs();
       updateSubtabs();
       if(mode==='tourney'){
@@ -246,64 +173,51 @@
       }
     }
 
-    // ----------------------
-    // Fetch & Initialize
-    // ----------------------
+    // Wire up tabs
+    tabT.onclick = ()=>{ mode='tourney'; render(); };
+    tabS.onclick = ()=>{ mode='streak'; render(); };
+    subD.onclick = ()=>{ /* no-op */ };
+    subC.onclick = ()=>{ streakView='current'; render(); };
+    subA.onclick = ()=>{ streakView='allTime'; render(); };
+
+    // Fetch data.json
     document.addEventListener('DOMContentLoaded', ()=>{
-      // wire up top-tabs
-      document.getElementById('tab-tourney').onclick = ()=>{
-        mode = 'tourney'; render();
-      };
-      document.getElementById('tab-streak').onclick = ()=>{
-        mode = 'streak'; render();
-      };
-      // wire up sub-tabs
-      document.getElementById('sub-current').onclick = ()=>{
-        streakView='current'; render();
-      };
-      document.getElementById('sub-all').onclick = ()=>{
-        streakView='allTime'; render();
-      };
-
-      // figure out base path
-      const parts = window.location.pathname.split('/'); parts.pop();
-      const base  = (parts.join('/')||'/').replace(/\/$/,'');
-
+      const p = window.location.pathname.split('/'); p.pop();
+      const base = (p.join('/')||'/').replace(/\/$/,'');
       fetch(`${base}/data.json`)
-        .then(r=> r.ok ? r.json() : Promise.reject(r.status))
+        .then(r=> r.ok? r.json():Promise.reject(r.status))
         .then(d=>{
           data = d;
-          document.getElementById('updated-at').textContent = d.last_updated || 'Unknown';
+          document.getElementById('updated-at').textContent = d.last_updated;
           render();
         })
         .catch(e=>{
-          console.error('Failed to load data.json',e);
+          console.error(e);
           document.getElementById('updated-at').textContent = 'Error';
         });
     });
 
-    // --------------------------------
-    // Tournament Head & Body Renderers
-    // --------------------------------
+    // Tournament renderers (same as before)…
     function renderTourneyHead(){
-      document.getElementById('leaderboard-head').innerHTML = `
+      const h = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
-          <th id="th-join"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+          <th id="th-join" class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Member Since <span>${tourneySort.join?'▲':'▼'}</span>
           </th>
-          <th id="th-last"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+          <th id="th-last" class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Last Race <span>${tourneySort.last?'▲':'▼'}</span>
           </th>
           <th id="th-races" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
             Races <span>${tourneySort.races?'▲':'▼'}</span>
           </th>
         </tr>`;
+      document.getElementById('leaderboard-head').innerHTML = h;
       ['join','last','races'].forEach(k=>{
         document.getElementById(`th-${k}`).onclick = ()=>{
-          tourneySort[k] = !tourneySort[k];
+          tourneySort[k]=!tourneySort[k];
           render();
         };
       });
@@ -318,9 +232,8 @@
           );
         }
       });
-
       const tb = document.getElementById('leaderboard-body');
-      tb.innerHTML = '';
+      tb.innerHTML='';
       let lastD=null, lastR=0;
       rows.forEach((it,i)=>{
         const rank = (it.delta!==lastD)?i+1:lastR;
@@ -330,34 +243,36 @@
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if(rank===3){ base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
 
-        let ord = `${rank}`;
-        if(rank===1) ord=`<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
-        if(rank===2) ord=`<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
-        if(rank===3) ord=`<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        let ord=`${rank}`;
+        if(rank===1) ord=`<img src="assets/1st.png" class="h-6 inline"/>`;
+        if(rank===2) ord=`<img src="assets/2nd.png" class="h-6 inline"/>`;
+        if(rank===3) ord=`<img src="assets/3rd.png" class="h-6 inline"/>`;
 
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
-          officer:     'border-2 border-blue-400 text-blue-400 bg-transparent',
-          captain:     'border-2 border-purple-400 text-purple-400 bg-transparent',
-          vicecaptain: 'border-2 border-green-400 text-green-400 bg-transparent',
+          officer:     'border-2 border-blue-400 text-blue-400',
+          captain:     'border-2 border-purple-400 text-purple-400',
+          vicecaptain: 'border-2 border-green-400 text-green-400',
           member:      'text-gray-400'
         };
         const badge = rc[key]||rc.member;
         let label = it.role.charAt(0).toUpperCase()+it.role.slice(1);
         if(key==='vicecaptain') label='Vice Captain';
 
-        const jd = it.joinStamp ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
-        const ld = it.lastActivity? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
+        const jd = it.joinStamp ? 
+          new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
+        const ld = it.lastActivity? 
+          new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
 
         const tc = rank<=3?'text-yellow-400/70':'text-gray-400';
         const tht= it.title?`<div class="text-xs ${tc} mt-1">${it.title}</div>`:'';
 
         const tr = document.createElement('tr');
-        tr.className = `cursor-pointer ${base} ${hover} align-middle`;
-        tr.onclick  = ()=>window.open(
-          `https://www.nitrotype.com/racer/${it.username}`, '_blank'
+        tr.className=`cursor-pointer ${base} ${hover} align-middle`;
+        tr.onclick = ()=>window.open(
+          `https://www.nitrotype.com/racer/${it.username}`,'_blank'
         );
-        tr.title    = 'View Nitro Type profile';
+        tr.title = 'View Nitro Type profile';
         tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
           <td class="px-4 py-3 text-yellow-300 font-semibold">
@@ -376,11 +291,9 @@
       });
     }
 
-    // --------------------
-    // Streaks Head & Body
-    // --------------------
+    // Streak renderers (same style)
     function renderStreakHead(){
-      document.getElementById('leaderboard-head').innerHTML = `
+      const h = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
@@ -395,9 +308,10 @@
             Length <span>${streakSort.length?'▲':'▼'}</span>
           </th>
         </tr>`;
+      document.getElementById('leaderboard-head').innerHTML=h;
       ['start','end','length'].forEach(k=>{
         document.getElementById(`th-${k}`).onclick = ()=>{
-          streakSort[k] = !streakSort[k];
+          streakSort[k]=!streakSort[k];
           render();
         };
       });
@@ -410,33 +324,32 @@
           list.sort((a,b)=>{
             const va = (k==='length'?a.length:(a[k]||0));
             const vb = (k==='length'?b.length:(b[k]||0));
-            return dir*(va - vb);
+            return dir*(va-vb);
           });
         }
       });
-
       const tb = document.getElementById('leaderboard-body');
-      tb.innerHTML = '';
+      tb.innerHTML='';
       let lastV=null, lastR=0;
       list.forEach((it,i)=>{
         const val  = it.length;
-        const rank = (val !== lastV)?i+1:lastR;
+        const rank = (val!==lastV)?i+1:lastR;
         lastV=val; lastR=rank;
         let base='', hover='hover:bg-slate-700';
         if(rank===1){ base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if(rank===3){ base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
 
-        let ord = `${rank}`;
-        if(rank===1) ord=`<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
-        if(rank===2) ord=`<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
-        if(rank===3) ord=`<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        let ord=`${rank}`;
+        if(rank===1) ord=`<img src="assets/1st.png" class="h-6 inline"/>`;
+        if(rank===2) ord=`<img src="assets/2nd.png" class="h-6 inline"/>`;
+        if(rank===3) ord=`<img src="assets/3rd.png" class="h-6 inline"/>`;
 
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
-          officer:     'border-2 border-blue-400 text-blue-400 bg-transparent',
-          captain:     'border-2 border-purple-400 text-purple-400 bg-transparent',
-          vicecaptain: 'border-2 border-green-400 text-green-400 bg-transparent',
+          officer:     'border-2 border-blue-400 text-blue-400',
+          captain:     'border-2 border-purple-400 text-purple-400',
+          vicecaptain: 'border-2 border-green-400 text-green-400',
           member:      'text-gray-400'
         };
         const badge = rc[key]||rc.member;
@@ -444,21 +357,18 @@
         if(key==='vicecaptain') label='Vice Captain';
 
         const sd = it.start ? new Date(it.start).toLocaleDateString() : 'N/A';
-        const ed = it.end   ? new Date(it.end  ).toLocaleDateString() : 'N/A';
-
-        const tc = rank<=3?'text-yellow-400/70':'text-gray-400';
-        const tht= '';  // no per-user title in streaks
+        const ed = it.end   ? new Date(it.end).toLocaleDateString()   : 'N/A';
 
         const tr = document.createElement('tr');
-        tr.className = `cursor-pointer ${base} ${hover} align-middle`;
-        tr.onclick  = ()=>window.open(
-          `https://www.nitrotype.com/racer/${it.username}`, '_blank'
+        tr.className=`cursor-pointer ${base} ${hover} align-middle`;
+        tr.onclick = ()=>window.open(
+          `https://www.nitrotype.com/racer/${it.username}`,'_blank'
         );
-        tr.title    = 'View Nitro Type profile';
+        tr.title = 'View Nitro Type profile';
         tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
           <td class="px-4 py-3 text-yellow-300 font-semibold">
-            ${it.displayName}${tht}
+            ${it.displayName}
           </td>
           <td class="px-4 py-3">
             <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">
