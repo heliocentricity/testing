@@ -1,0 +1,72 @@
+name: Hourly NitroType Update
+
+# ensure the GITHUB_TOKEN has write access to repo contents
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 * * * *'     # every hour on the hour
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) stop after July 23, 2025 8 AM PDT (15:00 UTC)
+      - name: Check cutoff date
+        id: cutoff
+        run: |
+          NOW=$(date -u +%s)
+          CUT=$(date -d '2025-07-23T15:00:00Z' +%s)
+          if [ "$NOW" -le "$CUT" ]; then
+            echo "continue=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "continue=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 2) Only run the rest if we're before that cutoff
+      - name: Checkout repository
+        if: steps.cutoff.outputs.continue == 'true'
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        if: steps.cutoff.outputs.continue == 'true'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install axios (no lockfile)
+        if: steps.cutoff.outputs.continue == 'true'
+        run: npm install axios --no-save --no-package-lock
+
+      - name: Run scraper
+        if: steps.cutoff.outputs.continue == 'true'
+        env:
+          SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
+        run: node scripts/update.js
+
+      - name: Commit, pull/rebase & push changes
+        if: steps.cutoff.outputs.continue == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # stage only the two output files
+          git add baseline.json docs/data.json
+
+          # if there's something new, commit it
+          if ! git diff --cached --quiet; then
+            git commit -m "ci: update NitroType data"
+            # grab any new remote commits, replay ours on top
+            git pull --rebase origin main
+            git push origin main
+          else
+            echo "No changes to commit."
+          fi

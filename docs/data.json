@@ -1,0 +1,447 @@
+{
+  "TEAM_NAME": "HELIOS",
+  "START_DATE": "2025-06-24",
+  "last_updated": "June 26, 2025 at 7:10 PM PDT",
+  "board": [
+    {
+      "username": "abot8",
+      "displayName": "1400dglooo",
+      "racesPlayed": 34084,
+      "role": "officer",
+      "title": "The Smasher",
+      "joinStamp": 1750805902,
+      "lastActivity": 1750990167,
+      "delta": 1215
+    },
+    {
+      "username": "tryhardwillwork",
+      "displayName": "Krowns",
+      "racesPlayed": 29347,
+      "role": "member",
+      "title": "Astronaut",
+      "joinStamp": 1750808321,
+      "lastActivity": 1750989582,
+      "delta": 572
+    },
+    {
+      "username": "vioiynx",
+      "displayName": "vioiynx",
+      "racesPlayed": 3463,
+      "role": "vicecaptain",
+      "title": "Oh Em Gee!",
+      "joinStamp": 1742509283,
+      "lastActivity": 1750987656,
+      "delta": 314
+    },
+    {
+      "username": "neiletsky",
+      "displayName": "NoLimit",
+      "racesPlayed": 10755,
+      "role": "vicecaptain",
+      "title": "Speed Demon",
+      "joinStamp": 1744741826,
+      "lastActivity": 1750956346,
+      "delta": 265
+    },
+    {
+      "username": "aiy_infection",
+      "displayName": "icarus - 10k soon",
+      "racesPlayed": 10222,
+      "role": "captain",
+      "title": "Happy Vibes :)",
+      "joinStamp": 1742486554,
+      "lastActivity": 1750966378,
+      "delta": 212
+    },
+    {
+      "username": "persionde",
+      "displayName": "persionde",
+      "racesPlayed": 4116,
+      "role": "member",
+      "title": ":D",
+      "joinStamp": 1750984125,
+      "lastActivity": 1750989748,
+      "delta": 117
+    },
+    {
+      "username": "soccer791",
+      "displayName": "Airborne",
+      "racesPlayed": 13631,
+      "role": "member",
+      "title": "Acute Tinselitis",
+      "joinStamp": 1750457551,
+      "lastActivity": 1750985923,
+      "delta": 94
+    },
+    {
+      "username": "4978dd1c73bd50b93b895f4299eed6b8",
+      "displayName": "Mystic",
+      "racesPlayed": 269,
+      "role": "member",
+      "title": "Millionaire",
+      "joinStamp": 1750712571,
+      "lastActivity": 1750974586,
+      "delta": 68
+    },
+    {
+      "username": "conquerer11k",
+      "displayName": "ResilientRedDonkey",
+      "racesPlayed": 13660,
+      "role": "member",
+      "title": "Spring-a-round",
+      "joinStamp": 1749752209,
+      "lastActivity": 1750962863,
+      "delta": 59
+    },
+    {
+      "username": "5fff3c41947a5b24ed13ddb1c73b1e55",
+      "displayName": "ApricotIvoryFlea",
+      "racesPlayed": 1310,
+      "role": "member",
+      "title": "Comeback Kid",
+      "joinStamp": 1750794927,
+      "lastActivity": 1750962966,
+      "delta": 49
+    },
+    {
+      "username": "gw2iscoollol",
+      "displayName": "Leqlerc",
+      "racesPlayed": 6246,
+      "role": "member",
+      "title": "Nitro Burnout",
+      "joinStamp": 1750448154,
+      "lastActivity": 1750892238,
+      "delta": 41
+    },
+    {
+      "username": "96adbea38b59bc5d736244c73d479514",
+      "displayName": "Pineapple",
+      "racesPlayed": 4364,
+      "role": "member",
+      "title": "Secret Agent",
+      "joinStamp": 1750984670,
+      "lastActivity": 1750989299,
+      "delta": 34
+    },
+    {
+      "username": "sumimyangel",
+      "displayName": "stephenJoester",
+      "racesPlayed": 21630,
+      "role": "member",
+      "title": "Spring Speedster",
+      "joinStamp": 1748965989,
+      "lastActivity": 1750949616,
+      "delta": 22
+    },
+    {
+      "username": "vdgyertikopzefrgh",
+      "displayName": "vdgyertikopzefrgh",
+      "racesPlayed": 10648,
+      "role": "member",
+      "title": ":D",
+      "joinStamp": 1742927144,
+      "lastActivity": 1750948008,
+      "delta": 16
+    },
+    {
+      "username": "timmytimmy213",
+      "displayName": "timmytimmy213",
+      "racesPlayed": 4227,
+      "role": "officer",
+      "title": "Champion Chaser",
+      "joinStamp": 1743005762,
+      "lastActivity": 1750962799,
+      "delta": 15
+    },
+    {
+      "username": "dianac128",
+      "displayName": "ryiichu",
+      "racesPlayed": 1784,
+      "role": "member",
+      "title": "Expert Extraordinaire",
+      "joinStamp": 1750468101,
+      "lastActivity": 1750948884,
+      "delta": 14
+    },
+    {
+      "username": "2525de6c193656755826c3b612fe4f5c",
+      "displayName": "Kenritz",
+      "racesPlayed": 1858,
+      "role": "member",
+      "title": "Olde School",
+      "joinStamp": 1750461776,
+      "lastActivity": 1750969321,
+      "delta": 3
+    },
+    {
+      "username": "juderbucks81",
+      "displayName": "juderbucks81",
+      "racesPlayed": 466,
+      "role": "member",
+      "title": "Mystery Man",
+      "joinStamp": 1750896179,
+      "lastActivity": 1750982428,
+      "delta": 1
+    },
+    {
+      "username": "rc0913",
+      "displayName": "RicSuave",
+      "racesPlayed": 4424,
+      "role": "member",
+      "title": "Spring Speedster",
+      "joinStamp": 1748494232,
+      "lastActivity": 1750748631,
+      "delta": 0
+    },
+    {
+      "username": "superdavidj",
+      "displayName": "FIood",
+      "racesPlayed": 10539,
+      "role": "member",
+      "title": "Spring Speedster",
+      "joinStamp": 1745202493,
+      "lastActivity": 1748398483,
+      "delta": 0
+    },
+    {
+      "username": "giovani95",
+      "displayName": "Giovani_13",
+      "racesPlayed": 6157,
+      "role": "member",
+      "title": "In the Spirit",
+      "joinStamp": 1750604772,
+      "lastActivity": 1750604987,
+      "delta": 0
+    },
+    {
+      "username": "7071702",
+      "displayName": "woaahh",
+      "racesPlayed": 3032,
+      "role": "member",
+      "title": "Novice Navigator",
+      "joinStamp": 1750451759,
+      "lastActivity": 1750568232,
+      "delta": 0
+    },
+    {
+      "username": "hotttbit",
+      "displayName": "4060TI",
+      "racesPlayed": 180,
+      "role": "member",
+      "title": "Flora Fury",
+      "joinStamp": 1749574435,
+      "lastActivity": 1750749473,
+      "delta": 0
+    },
+    {
+      "username": "disfunction",
+      "displayName": "TealCoralSole",
+      "racesPlayed": 11281,
+      "role": "member",
+      "title": "The Force",
+      "joinStamp": 1750605347,
+      "lastActivity": 1750606496,
+      "delta": 0
+    },
+    {
+      "username": "opsy07",
+      "displayName": "2fingertypist",
+      "racesPlayed": 2632,
+      "role": "member",
+      "title": "Green Streak",
+      "joinStamp": 1744382527,
+      "lastActivity": 1749863144,
+      "delta": 0
+    },
+    {
+      "username": "b2cbc9dfc2058f59bdaf062719776245",
+      "displayName": "Hypersound",
+      "racesPlayed": 1056,
+      "role": "member",
+      "title": "Eternal Spring",
+      "joinStamp": 1745209661,
+      "lastActivity": 1750738904,
+      "delta": 0
+    },
+    {
+      "username": "ryan_po",
+      "displayName": "RainbowPig38",
+      "racesPlayed": 2611,
+      "role": "member",
+      "title": ":D",
+      "joinStamp": 1748724077,
+      "lastActivity": 1750132651,
+      "delta": 0
+    },
+    {
+      "username": "f49de7389426a7d9dfa859467b8bb877",
+      "displayName": "AlyviaB",
+      "racesPlayed": 156,
+      "role": "member",
+      "title": "Wampus Thwamper",
+      "joinStamp": 1750042840,
+      "lastActivity": 1750692293,
+      "delta": 0
+    },
+    {
+      "username": "thecretor145",
+      "displayName": "Trickster_illusoire",
+      "racesPlayed": 5045,
+      "role": "member",
+      "title": "All Night Racer",
+      "joinStamp": 1750988885,
+      "lastActivity": 1750990187,
+      "delta": 0
+    },
+    {
+      "username": "f0dca54e9b8d6f1aa97d5bb4c608a50a",
+      "displayName": "Vintagium",
+      "racesPlayed": 1660,
+      "role": "member",
+      "title": "Green Streak",
+      "joinStamp": 1743434481,
+      "lastActivity": 1747658119,
+      "delta": 0
+    },
+    {
+      "username": "viper_shot",
+      "displayName": "v1per_sh0t",
+      "racesPlayed": 5612,
+      "role": "member",
+      "title": "Legendary Lapper",
+      "joinStamp": 1747355208,
+      "lastActivity": 1750348878,
+      "delta": 0
+    },
+    {
+      "username": "efac1d20fd1dbd3ed0b4f03e90bc7b96",
+      "displayName": "chatgpt typing this",
+      "racesPlayed": 1239,
+      "role": "member",
+      "title": "Catty Wampus",
+      "joinStamp": 1747943046,
+      "lastActivity": 1750374208,
+      "delta": 0
+    },
+    {
+      "username": "richman11111",
+      "displayName": "richman11111",
+      "racesPlayed": 341,
+      "role": "member",
+      "title": "Original Gangster",
+      "joinStamp": 1749829959,
+      "lastActivity": 1750429183,
+      "delta": 0
+    },
+    {
+      "username": "slow_typer4ubest",
+      "displayName": "veryslowtypist",
+      "racesPlayed": 505,
+      "role": "member",
+      "title": "Raw Racing Recruit",
+      "joinStamp": 1749411163,
+      "lastActivity": 1749668841,
+      "delta": 0
+    },
+    {
+      "username": "c160d3791fc9b027da843b2df727d345",
+      "displayName": "DarkAchromaticCamel",
+      "racesPlayed": 368,
+      "role": "member",
+      "title": "Spring Speedster",
+      "joinStamp": 1747432192,
+      "lastActivity": 1747778837,
+      "delta": 0
+    },
+    {
+      "username": "frogs_are_frogs",
+      "displayName": "Confusion-Need Gold",
+      "racesPlayed": 17741,
+      "role": "member",
+      "title": "Luck o' the Irish",
+      "joinStamp": 1750988251,
+      "lastActivity": 1750988904,
+      "delta": 0
+    },
+    {
+      "username": "407017f3a63e1d9f1bc27590024a284f",
+      "displayName": "JoshAbner13",
+      "racesPlayed": 22,
+      "role": "member",
+      "title": "Raw Racing Recruit",
+      "joinStamp": 1750967124,
+      "lastActivity": 0,
+      "delta": 0
+    },
+    {
+      "username": "01dda282fb97c0a298a6a18e8eac8d8d",
+      "displayName": "Juris Doctor",
+      "racesPlayed": 3643,
+      "role": "officer",
+      "title": "Eggsecutive",
+      "joinStamp": 1744391071,
+      "lastActivity": 1750168426,
+      "delta": 0
+    },
+    {
+      "username": "1400dgloo",
+      "displayName": "1400dgloo",
+      "racesPlayed": 606,
+      "role": "member",
+      "title": "Pro Pacer",
+      "joinStamp": 1750796497,
+      "lastActivity": 1750805289,
+      "delta": 0
+    },
+    {
+      "username": "4399e7a571cf827be64b714c30c899ef",
+      "displayName": "FuchsiaAzureCougar",
+      "racesPlayed": 382,
+      "role": "member",
+      "title": "Flora Fury",
+      "joinStamp": 1748723201,
+      "lastActivity": 1750408445,
+      "delta": 0
+    },
+    {
+      "username": "cyconoxyls",
+      "displayName": "cyconoxyls",
+      "racesPlayed": 1290,
+      "role": "member",
+      "title": "[SKIPWRD]",
+      "joinStamp": 1743512395,
+      "lastActivity": 1743598629,
+      "delta": 0
+    },
+    {
+      "username": "definitelynotdre",
+      "displayName": "Curiosite",
+      "racesPlayed": 663,
+      "role": "member",
+      "title": "Comeback Kid",
+      "joinStamp": 1750986063,
+      "lastActivity": 1750988866,
+      "delta": 0
+    },
+    {
+      "username": "catman223s",
+      "displayName": "catman223s",
+      "racesPlayed": 780,
+      "role": "member",
+      "title": "Millionaire",
+      "joinStamp": 1747978481,
+      "lastActivity": 1750423100,
+      "delta": 0
+    },
+    {
+      "username": "kudism",
+      "displayName": "avalon",
+      "racesPlayed": 1540,
+      "role": "member",
+      "title": "Eternal Spring",
+      "joinStamp": 1750606113,
+      "lastActivity": 1750733607,
+      "delta": 0
+    }
+  ]
+}
