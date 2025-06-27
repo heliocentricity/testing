@@ -1,27 +1,27 @@
 {
   "TEAM_NAME": "HELIOS",
   "START_DATE": "2025-06-24",
-  "last_updated": "June 26, 2025 at 7:10 PM PDT",
+  "last_updated": "June 26, 2025 at 9:49 PM PDT",
   "board": [
     {
       "username": "abot8",
       "displayName": "1400dglooo",
-      "racesPlayed": 34084,
+      "racesPlayed": 34235,
       "role": "officer",
       "title": "The Smasher",
       "joinStamp": 1750805902,
-      "lastActivity": 1750990167,
-      "delta": 1215
+      "lastActivity": 1750999169,
+      "delta": 1366
     },
     {
       "username": "tryhardwillwork",
       "displayName": "Krowns",
-      "racesPlayed": 29347,
+      "racesPlayed": 29455,
       "role": "member",
       "title": "Astronaut",
       "joinStamp": 1750808321,
-      "lastActivity": 1750989582,
-      "delta": 572
+      "lastActivity": 1750996490,
+      "delta": 680
     },
     {
       "username": "vioiynx",
@@ -46,32 +46,32 @@
     {
       "username": "aiy_infection",
       "displayName": "icarus - 10k soon",
-      "racesPlayed": 10222,
+      "racesPlayed": 10226,
       "role": "captain",
       "title": "Happy Vibes :)",
       "joinStamp": 1742486554,
-      "lastActivity": 1750966378,
-      "delta": 212
+      "lastActivity": 1750994570,
+      "delta": 216
     },
     {
       "username": "persionde",
       "displayName": "persionde",
-      "racesPlayed": 4116,
+      "racesPlayed": 4133,
       "role": "member",
       "title": ":D",
       "joinStamp": 1750984125,
-      "lastActivity": 1750989748,
-      "delta": 117
+      "lastActivity": 1750995166,
+      "delta": 134
     },
     {
       "username": "soccer791",
       "displayName": "Airborne",
-      "racesPlayed": 13631,
+      "racesPlayed": 13634,
       "role": "member",
       "title": "Acute Tinselitis",
       "joinStamp": 1750457551,
-      "lastActivity": 1750985923,
-      "delta": 94
+      "lastActivity": 1750996359,
+      "delta": 97
     },
     {
       "username": "4978dd1c73bd50b93b895f4299eed6b8",
@@ -82,6 +82,16 @@
       "joinStamp": 1750712571,
       "lastActivity": 1750974586,
       "delta": 68
+    },
+    {
+      "username": "thecretor145",
+      "displayName": "Trickster_illusoire",
+      "racesPlayed": 5109,
+      "role": "member",
+      "title": "All Night Racer",
+      "joinStamp": 1750988885,
+      "lastActivity": 1750994788,
+      "delta": 64
     },
     {
       "username": "conquerer11k",
@@ -116,12 +126,12 @@
     {
       "username": "96adbea38b59bc5d736244c73d479514",
       "displayName": "Pineapple",
-      "racesPlayed": 4364,
+      "racesPlayed": 4368,
       "role": "member",
       "title": "Secret Agent",
       "joinStamp": 1750984670,
-      "lastActivity": 1750989299,
-      "delta": 34
+      "lastActivity": 1750992061,
+      "delta": 38
     },
     {
       "username": "sumimyangel",
@@ -204,26 +214,6 @@
       "delta": 0
     },
     {
-      "username": "giovani95",
-      "displayName": "Giovani_13",
-      "racesPlayed": 6157,
-      "role": "member",
-      "title": "In the Spirit",
-      "joinStamp": 1750604772,
-      "lastActivity": 1750604987,
-      "delta": 0
-    },
-    {
-      "username": "7071702",
-      "displayName": "woaahh",
-      "racesPlayed": 3032,
-      "role": "member",
-      "title": "Novice Navigator",
-      "joinStamp": 1750451759,
-      "lastActivity": 1750568232,
-      "delta": 0
-    },
-    {
       "username": "hotttbit",
       "displayName": "4060TI",
       "racesPlayed": 180,
@@ -274,6 +264,16 @@
       "delta": 0
     },
     {
+      "username": "azamondiasthe2",
+      "displayName": "Akravus",
+      "racesPlayed": 1891,
+      "role": "member",
+      "title": "A E S T H E T I C",
+      "joinStamp": 1750994218,
+      "lastActivity": 1750994563,
+      "delta": 0
+    },
+    {
       "username": "f49de7389426a7d9dfa859467b8bb877",
       "displayName": "AlyviaB",
       "racesPlayed": 156,
@@ -281,16 +281,6 @@
       "title": "Wampus Thwamper",
       "joinStamp": 1750042840,
       "lastActivity": 1750692293,
-      "delta": 0
-    },
-    {
-      "username": "thecretor145",
-      "displayName": "Trickster_illusoire",
-      "racesPlayed": 5045,
-      "role": "member",
-      "title": "All Night Racer",
-      "joinStamp": 1750988885,
-      "lastActivity": 1750990187,
       "delta": 0
     },
     {
@@ -351,16 +341,6 @@
       "title": "Spring Speedster",
       "joinStamp": 1747432192,
       "lastActivity": 1747778837,
-      "delta": 0
-    },
-    {
-      "username": "frogs_are_frogs",
-      "displayName": "Confusion-Need Gold",
-      "racesPlayed": 17741,
-      "role": "member",
-      "title": "Luck o' the Irish",
-      "joinStamp": 1750988251,
-      "lastActivity": 1750988904,
       "delta": 0
     },
     {
@@ -443,5 +423,683 @@
       "lastActivity": 1750733607,
       "delta": 0
     }
-  ]
+  ],
+  "streaks": {
+    "current": [
+      {
+        "username": "rc0913",
+        "displayName": "RicSuave",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "superdavidj",
+        "displayName": "FIood",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "neiletsky",
+        "displayName": "NoLimit",
+        "role": "vicecaptain",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "soccer791",
+        "displayName": "Airborne",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "conquerer11k",
+        "displayName": "ResilientRedDonkey",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "hotttbit",
+        "displayName": "4060TI",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "disfunction",
+        "displayName": "TealCoralSole",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "sumimyangel",
+        "displayName": "stephenJoester",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "5fff3c41947a5b24ed13ddb1c73b1e55",
+        "displayName": "ApricotIvoryFlea",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "opsy07",
+        "displayName": "2fingertypist",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "dianac128",
+        "displayName": "ryiichu",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "abot8",
+        "displayName": "1400dglooo",
+        "role": "officer",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "persionde",
+        "displayName": "persionde",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "b2cbc9dfc2058f59bdaf062719776245",
+        "displayName": "Hypersound",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "ryan_po",
+        "displayName": "RainbowPig38",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "tryhardwillwork",
+        "displayName": "Krowns",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "azamondiasthe2",
+        "displayName": "Akravus",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "f49de7389426a7d9dfa859467b8bb877",
+        "displayName": "AlyviaB",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "thecretor145",
+        "displayName": "Trickster_illusoire",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "gw2iscoollol",
+        "displayName": "Leqlerc",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "96adbea38b59bc5d736244c73d479514",
+        "displayName": "Pineapple",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "2525de6c193656755826c3b612fe4f5c",
+        "displayName": "Kenritz",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "f0dca54e9b8d6f1aa97d5bb4c608a50a",
+        "displayName": "Vintagium",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "viper_shot",
+        "displayName": "v1per_sh0t",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "aiy_infection",
+        "displayName": "icarus - 10k soon",
+        "role": "captain",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "vdgyertikopzefrgh",
+        "displayName": "vdgyertikopzefrgh",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "efac1d20fd1dbd3ed0b4f03e90bc7b96",
+        "displayName": "chatgpt typing this",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "richman11111",
+        "displayName": "richman11111",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "slow_typer4ubest",
+        "displayName": "veryslowtypist",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "c160d3791fc9b027da843b2df727d345",
+        "displayName": "DarkAchromaticCamel",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "407017f3a63e1d9f1bc27590024a284f",
+        "displayName": "JoshAbner13",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "01dda282fb97c0a298a6a18e8eac8d8d",
+        "displayName": "Juris Doctor",
+        "role": "officer",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "4978dd1c73bd50b93b895f4299eed6b8",
+        "displayName": "Mystic",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "1400dgloo",
+        "displayName": "1400dgloo",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "4399e7a571cf827be64b714c30c899ef",
+        "displayName": "FuchsiaAzureCougar",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "timmytimmy213",
+        "displayName": "timmytimmy213",
+        "role": "officer",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "vioiynx",
+        "displayName": "vioiynx",
+        "role": "vicecaptain",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "cyconoxyls",
+        "displayName": "cyconoxyls",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "definitelynotdre",
+        "displayName": "Curiosite",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "catman223s",
+        "displayName": "catman223s",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "kudism",
+        "displayName": "avalon",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "juderbucks81",
+        "displayName": "juderbucks81",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      }
+    ],
+    "allTime": [
+      {
+        "username": "rc0913",
+        "displayName": "RicSuave",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "superdavidj",
+        "displayName": "FIood",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "neiletsky",
+        "displayName": "NoLimit",
+        "role": "vicecaptain",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "soccer791",
+        "displayName": "Airborne",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "conquerer11k",
+        "displayName": "ResilientRedDonkey",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "hotttbit",
+        "displayName": "4060TI",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "disfunction",
+        "displayName": "TealCoralSole",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "sumimyangel",
+        "displayName": "stephenJoester",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "5fff3c41947a5b24ed13ddb1c73b1e55",
+        "displayName": "ApricotIvoryFlea",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "opsy07",
+        "displayName": "2fingertypist",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "dianac128",
+        "displayName": "ryiichu",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "abot8",
+        "displayName": "1400dglooo",
+        "role": "officer",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "persionde",
+        "displayName": "persionde",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "b2cbc9dfc2058f59bdaf062719776245",
+        "displayName": "Hypersound",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "ryan_po",
+        "displayName": "RainbowPig38",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "tryhardwillwork",
+        "displayName": "Krowns",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "azamondiasthe2",
+        "displayName": "Akravus",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "f49de7389426a7d9dfa859467b8bb877",
+        "displayName": "AlyviaB",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "thecretor145",
+        "displayName": "Trickster_illusoire",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "gw2iscoollol",
+        "displayName": "Leqlerc",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "96adbea38b59bc5d736244c73d479514",
+        "displayName": "Pineapple",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "2525de6c193656755826c3b612fe4f5c",
+        "displayName": "Kenritz",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "f0dca54e9b8d6f1aa97d5bb4c608a50a",
+        "displayName": "Vintagium",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "viper_shot",
+        "displayName": "v1per_sh0t",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "aiy_infection",
+        "displayName": "icarus - 10k soon",
+        "role": "captain",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "vdgyertikopzefrgh",
+        "displayName": "vdgyertikopzefrgh",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "efac1d20fd1dbd3ed0b4f03e90bc7b96",
+        "displayName": "chatgpt typing this",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "richman11111",
+        "displayName": "richman11111",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "slow_typer4ubest",
+        "displayName": "veryslowtypist",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "c160d3791fc9b027da843b2df727d345",
+        "displayName": "DarkAchromaticCamel",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "407017f3a63e1d9f1bc27590024a284f",
+        "displayName": "JoshAbner13",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "01dda282fb97c0a298a6a18e8eac8d8d",
+        "displayName": "Juris Doctor",
+        "role": "officer",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "4978dd1c73bd50b93b895f4299eed6b8",
+        "displayName": "Mystic",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "1400dgloo",
+        "displayName": "1400dgloo",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "4399e7a571cf827be64b714c30c899ef",
+        "displayName": "FuchsiaAzureCougar",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "timmytimmy213",
+        "displayName": "timmytimmy213",
+        "role": "officer",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "vioiynx",
+        "displayName": "vioiynx",
+        "role": "vicecaptain",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "cyconoxyls",
+        "displayName": "cyconoxyls",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "definitelynotdre",
+        "displayName": "Curiosite",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "catman223s",
+        "displayName": "catman223s",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "kudism",
+        "displayName": "avalon",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      },
+      {
+        "username": "juderbucks81",
+        "displayName": "juderbucks81",
+        "role": "member",
+        "start": null,
+        "end": null,
+        "length": 0
+      }
+    ]
+  }
 }
