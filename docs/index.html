@@ -76,8 +76,8 @@
           <!-- Question-mark icon, only for streaks -->
           <span id="tooltip-icon" class="hidden absolute right-2 top-1/2 transform -translate-y-1/2 group inline-block">
             <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">?</span>
-            <span class="hidden group-hover:block absolute right-full bottom-1 -mr-1 w-48 h-16 p-2 text-xs text-gray-300 bg-slate-800 border-2 border-yellow-400 rounded-lg whitespace-normal z-50">
-              A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
+            <span class="hidden group-hover:block absolute right-full bottom-1 -mr-2 w-64 p-2 text-xs text-gray-300 bg-slate-800 border-2 border-yellow-400 rounded-lg whitespace-normal z-50">
+              A streak is the number of consecutive days a player has logged in and completed at least one race. Each day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
             </span>
           </span>
         </div>
@@ -334,7 +334,7 @@
         let ord = `${rank}`;
         if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
         if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
-        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;      
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
           officer:    'border-2 border-blue-400 text-blue-400 bg-transparent',
@@ -421,7 +421,7 @@
         let ord = `${rank}`;
         if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
         if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
-        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;      
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
           officer:    'border-2 border-blue-400 text-blue-400 bg-transparent',
