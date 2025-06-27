@@ -10,15 +10,23 @@
   <style>
     .font-lato { font-family: 'Lato', sans-serif; }
     th.sortable { cursor: pointer; user-select: none; }
-    .table-with-suns { position: relative; overflow: hidden; }
-    .table-with-suns::after {
-      content: ''; position: absolute; inset: 0;
-      background: url('assets/suns.png') center/cover no-repeat;
-      opacity: 0.07; pointer-events: none; z-index: 1;
+
+    /* Suns background under rows but above hover backgrounds */
+    .table-with-suns {
+      position: relative;
+      overflow: hidden;
     }
-    .table-with-suns tr   { position: relative; z-index: 0; }
-    .table-with-suns th,
-    .table-with-suns td  { position: relative; z-index: 2; }
+    .table-with-suns::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/suns.png') center/cover no-repeat;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .table-with-suns tr { position: relative; z-index: 0; }
+    .table-with-suns th, .table-with-suns td { position: relative; z-index: 2; }
   </style>
 </head>
 <body class="bg-slate-900 text-gray-200 font-sans min-h-screen p-8">
@@ -30,31 +38,41 @@
   </p>
 
   <div class="flex space-x-6">
+    <!-- LEFT: Tabs + Leaderboard -->
     <div class="w-3/4">
+      <!-- Top Tabs -->
       <div class="flex mb-0">
-        <button id="tab-tourney" class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0">
+        <button id="tab-tourney"
+                class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0">
           Tournament
         </button>
-        <button id="tab-streak" class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 ml-2">
+        <button id="tab-streak"
+                class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 ml-2">
           Streaks
         </button>
       </div>
+      <!-- Panel under tabs -->
       <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-b-lg overflow-hidden">
+        <!-- Sub-tabs -->
         <div class="flex border-b border-slate-700 px-4 py-2">
           <div id="sub-tourney" class="flex">
-            <button id="sub-date" class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
+            <button id="sub-date"
+                    class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
               6/26/25 – 7/23/25
             </button>
           </div>
           <div id="sub-streaks" class="hidden flex space-x-2 ml-2">
-            <button id="sub-current" class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
+            <button id="sub-current"
+                    class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
               Current
             </button>
-            <button id="sub-all" class="px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400">
+            <button id="sub-all"
+                    class="px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400">
               All Time
             </button>
           </div>
         </div>
+        <!-- Table container -->
         <div id="table-container" class="table-with-suns">
           <table class="min-w-full rounded-b-lg">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
@@ -64,11 +82,76 @@
       </div>
     </div>
 
-    <!-- right-side info boxes unchanged -->
+    <!-- RIGHT: Info Boxes -->
+    <div class="w-1/4 space-y-6">
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4 text-center">
+        <div id="countdown" class="text-4xl font-extrabold text-yellow-400 mb-1"></div>
+        <div class="text-sm text-yellow-400 mb-2">days left in tournament</div>
+        <button id="toggle-countdown"
+                class="px-2 py-0.5 bg-gray-700 text-xs rounded mt-1">
+          Show days only
+        </button>
+        <div class="text-xs text-gray-400 mt-2">
+          June 25th 8 AM (PST/PDT) – July 23rd 8 AM (PST/PDT)
+        </div>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Prizes</h2>
+        <p class="text-sm">
+          <span class="text-yellow-400 font-bold">1st</span> – 
+          <span class="text-green-400 font-semibold">$10,000,000 NITRO CASH</span><br>
+          <span class="text-yellow-400 font-bold">2nd</span> – 
+          <span class="text-green-400 font-semibold">$5,000,000 NITRO CASH</span><br>
+          <span class="text-yellow-400 font-bold">3rd</span> – 
+          <span class="text-green-400 font-semibold">$2,000,000 NITRO CASH</span>
+        </p>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Description</h2>
+        <p class="text-sm text-gray-300 mb-2">
+          Tracks each member’s races since June 25, 2025. Updated hourly (PST/PDT).
+        </p>
+        <p class="text-xs text-gray-400 mb-0">
+          We reserve the right to disqualify you if we believe you have cheated. Please make sure you are adhering to
+          <a href="https://www.nitrotype.com/support/tos/" target="_blank" class="underline text-blue-300">
+            Nitro Type’s TOS</a>.
+        </p>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Links</h2>
+        <ul class="text-sm space-y-1">
+          <li>
+            <a href="https://www.nitrotype.com/team/HELIOS" target="_blank" class="underline">
+              <span class="text-yellow-300">[HELIOS]</span>
+              <span class="text-blue-300"> on Nitro Type</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://padlet.com/icarus_/HELIOS" target="_blank" class="underline text-blue-300">
+              Padlet
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Credits</h2>
+        <p class="text-sm text-gray-300 mb-1">Website created by vioiynx.</p>
+        <p class="text-sm text-gray-300 mb-1">
+          Medal icons by
+          <a href="https://www.vecteezy.com/free-vector/1st-2nd-3rd-place" target="_blank" class="underline text-blue-300">
+            Vecteezy</a>.
+        </p>
+        <p class="text-sm text-gray-300">
+          Sun motifs designed by
+          <a href="https://www.freepik.com" target="_blank" class="underline text-blue-300">
+            Freepik</a>.
+        </p>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Countdown (unchanged)...
+    // --- Countdown ---
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
@@ -80,7 +163,7 @@
             mins = Math.floor((diff%3600000)/60000),
             secs = Math.floor((diff%60000)/1000);
       cdEl.textContent = exact
-        ? `${String(days).padStart(2,'0')}:` 
+        ? `${String(days).padStart(2,'0')}:`
           +`${String(hrs).padStart(2,'0')}:`
           +`${String(mins).padStart(2,'0')}:`
           +`${String(secs).padStart(2,'0')}`
@@ -94,14 +177,14 @@
     setInterval(updateCd, 1000);
     updateCd();
 
-    // State & sort flags
+    // --- State & Sorting Flags ---
     let data        = null,
         mode        = 'tourney',
         streakView  = 'current',
         tourneySort = { key:'races', dir:-1 },
         streakSort  = { key:'length', dir:-1 };
 
-    // Tab styling helpers (unchanged)...
+    // --- Tab Styling Helpers ---
     function updateTabs(){
       const t1 = document.getElementById('tab-tourney'),
             t2 = document.getElementById('tab-streak'),
@@ -135,10 +218,10 @@
       }
     }
 
-    // Initial fetch & wireup
+    // --- Initial Fetch & Wireup ---
     document.addEventListener('DOMContentLoaded', ()=>{
       document.getElementById('tab-tourney').onclick = ()=>{ mode='tourney'; render(); };
-      document.getElementById('tab-streak').onclick  = ()=>{ mode='streak';  render(); };
+      document.getElementById('tab-streak').onclick  = ()=>{ mode='streak'; render(); };
       document.getElementById('sub-current').onclick = ()=>{ streakView='current'; render(); };
       document.getElementById('sub-all').onclick     = ()=>{ streakView='allTime'; render(); };
 
@@ -149,40 +232,30 @@
         .then(r => r.ok ? r.json() : Promise.reject(r.status))
         .then(d => {
           data = d;
-
-          // Tournament ranks
-          let lastD = null, lastR = 0;
-          d.board.forEach((it,i)=>{
+          // tournament ranks
+          let lastD=null, lastR=0;
+          data.board.forEach((it,i)=>{
             const val = it.delta;
             const rk  = val!==lastD ? i+1 : lastR;
             it.initialRank = rk;
             lastD = val; lastR = rk;
           });
-
-          // Streak ranks
+          // streak ranks + merge titles
           ['current','allTime'].forEach(view=>{
-            if (d.streaks && d.streaks[view]) {
-              let ld = null, lr = 0;
-              d.streaks[view].forEach((it,i)=>{
-                const val = it.length||0;
-                const rk  = val!==ld ? i+1 : lr;
+            if(data.streaks && data.streaks[view]){
+              let lastLen=null, lastRk=0;
+              data.streaks[view].forEach((it,i)=>{
+                const len = it.length||0;
+                const rk  = len!==lastLen ? i+1 : lastRk;
                 it.initialRank = rk;
-                ld = val; lr = rk;
+                lastLen = len; lastRk = rk;
+                const b = data.board.find(b=>b.username===it.username);
+                it.title = b?.title || '';
               });
             }
           });
 
-          // **New**: merge each streak entry's title from board
-          ['current','allTime'].forEach(view=>{
-            if (d.streaks && d.streaks[view]) {
-              d.streaks[view].forEach(st => {
-                const match = d.board.find(b => b.username === st.username);
-                st.title = match ? match.title : '';
-              });
-            }
-          });
-
-          document.getElementById('updated-at').textContent = d.last_updated || 'Unknown';
+          document.getElementById('updated-at').textContent = data.last_updated || 'Unknown';
           render();
         })
         .catch(e=>{
@@ -191,7 +264,7 @@
         });
     });
 
-    // Main render dispatcher
+    // --- Render Dispatcher ---
     function render(){
       if(!data) return;
       updateTabs();
@@ -205,7 +278,7 @@
       }
     }
 
-    // Tournament head
+    // --- Tournament Head & Body ---
     function renderTourneyHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -224,13 +297,12 @@
         </tr>`;
       ['join','last','races'].forEach(k=>{
         document.getElementById(`th-${k}`).onclick = ()=>{
-          if(tourneySort.key===k) tourneySort.dir *= -1; else { tourneySort.key=k; tourneySort.dir=1; }
+          if(tourneySort.key===k) tourneySort.dir *= -1;
+          else { tourneySort.key=k; tourneySort.dir=1; }
           render();
         };
       });
     }
-
-    // Tournament body
     function renderTourneyBody(){
       const rows = [...data.board];
       rows.sort((a,b)=>{
@@ -265,11 +337,14 @@
         let label = it.role.charAt(0).toUpperCase()+it.role.slice(1);
         if(key==='vicecaptain') label='Vice Captain';
 
-        const jd = it.joinStamp ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
-        const ld = it.lastActivity ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
+        const jd = it.joinStamp
+          ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
+        const ld = it.lastActivity
+          ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
 
         const tc = rank<=3? 'text-yellow-400/70':'text-gray-400';
-        const titleHtml = it.title ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
+        const titleHtml = it.title
+          ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
 
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
@@ -291,7 +366,7 @@
       });
     }
 
-    // Streaks head
+    // --- Streaks Head & Body ---
     function renderStreakHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -316,8 +391,6 @@
         };
       });
     }
-
-    // Streaks body
     function renderStreakBody(){
       const list = [...(data.streaks[streakView]||[])];
       list.sort((a,b)=>{
@@ -370,7 +443,9 @@
             ${it.displayName}${titleHtml}
           </td>
           <td class="px-4 py-3">
-            <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">${label}</span>
+            <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">
+              ${label}
+            </span>
           </td>
           <td class="px-4 py-3">${sd}</td>
           <td class="px-4 py-3">${ed}</td>
