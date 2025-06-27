@@ -42,8 +42,7 @@ jobs:
 
       - name: Install axios (no lockfile)
         if: steps.cutoff.outputs.continue == 'true'
-        run: npm install axios --no-save --no-package-lock
-
+        run: npm install axios @replit/database --no-save --no-package-lock
       - name: Run scraper
         if: steps.cutoff.outputs.continue == 'true'
         env:
