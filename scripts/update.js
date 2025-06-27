@@ -95,3 +95,94 @@ async function updateData() {
     process.exit(1);
   }
 })();
+
+const db = new Database();
+
+// load or init streaks store
+const streaksKey = 'streaks';
+let streaks = (await db.get(streaksKey)) || {};
+
+// get timestamp now
+const now = Date.now();
+
+// helper: did user race since last check?
+async function didRaceSince(user, lastCount) {
+  const curr = await fetchRaces(user);
+  return { raced: curr > lastCount, curr };
+}
+
+// 1) Update tournament baseline/deltas (your existing code) …
+await ensureBaseline();
+await updateDeltas();
+
+// 2) Fetch team members & loop to update streaks
+const members = await fetchTeamMembers();
+for (let m of members) {
+  const u = m.username;
+  // initialize per-user record
+  if (!streaks[u]) streaks[u] = {
+    current: 0,      // current streak length in hours
+    curStart: null,  // timestamp
+    curEnd:   null,
+    longest:  0,
+    longStart: null,
+    longEnd:   null
+  };
+
+  // previous known races count:
+  const lastCount = (await db.get(`prevCount:${u}`)) || 0;
+  const { raced, curr } = await didRaceSince(u, lastCount);
+
+  // store new prevCount for next hour
+  await db.set(`prevCount:${u}`, curr);
+
+  if (raced) {
+    // extend or start streak
+    if (streaks[u].current === 0) {
+      streaks[u].curStart = now;
+    }
+    streaks[u].current += 1;
+    streaks[u].curEnd = now;
+  } else {
+    // if they just broke a non-zero streak, check longest
+    if (streaks[u].current > 0) {
+      if (streaks[u].current > streaks[u].longest) {
+        streaks[u].longest    = streaks[u].current;
+        streaks[u].longStart  = streaks[u].curStart;
+        streaks[u].longEnd    = streaks[u].curEnd;
+      }
+      // reset current
+      streaks[u].current = 0;
+      streaks[u].curStart = streaks[u].curEnd = null;
+    }
+  }
+}
+
+// 3) Save streaks back to DB
+await db.set(streaksKey, streaks);
+
+// 4) Build JSON files for front-end
+const data = { 
+  last_updated: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }),
+  board:  (await db.get('deltas')) || [],
+  streaks: {
+    current:  Object.entries(streaks).map(([u,rec]) => ({
+      username:    u,
+      displayName: /* fetch or store this too */,
+      role:        /* store role in update.json */,
+      start:       rec.curStart,
+      end:         rec.curEnd,
+      length:      rec.current
+    })).sort((a,b)=>b.length-a.length),
+    allTime:   Object.entries(streaks).map(([u,rec]) => ({
+      username:    u,
+      displayName: /* … */,
+      role:        /* … */,
+      start:       rec.longStart,
+      end:         rec.longEnd,
+      length:      rec.longest
+    })).sort((a,b)=>b.length-a.length)
+  }
+};
+fs.writeFileSync('docs/data.json', JSON.stringify(data, null, 2));
+
