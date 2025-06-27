@@ -14,13 +14,13 @@ const STREAKS_PATH = path.join(__dirname, '..', 'streaks.json');
 const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 const { TEAM_NAME, START_DATE } = config;
 
-// Load or initialize your streak state
+// Load or initialize streak state
 function loadState() {
   if (fs.existsSync(STREAKS_PATH)) {
     return JSON.parse(fs.readFileSync(STREAKS_PATH,'utf8'));
   }
   return {
-    lastDate: null,   // last PST date string we processed, e.g. "2025-06-26"
+    lastDate: null,   // last PST date string processed, e.g. "2025-06-26"
     streaks: {}       // per-user streak records
   };
 }
@@ -104,7 +104,7 @@ async function writeStreaks(board) {
     timeZone: 'America/Los_Angeles'
   });
 
-  // if we’ve moved into a new PST day since last run…
+  // if moved into a new PST day since last run…
   if (state.lastDate !== pstToday) {
     Object.values(state.streaks).forEach(rec => {
       // anyone with an ongoing streak who never raced “yesterday” gets broken
@@ -138,7 +138,7 @@ async function writeStreaks(board) {
     }
   });
 
-  // now mark today’s races
+  // mark today’s races
   board.forEach(m => {
     const rec = state.streaks[m.username];
     // what date did they last race, in PST?
@@ -147,7 +147,7 @@ async function writeStreaks(board) {
       timeZone: 'America/Los_Angeles'
     });
 
-    // if that date is today, and we haven't yet counted them...
+    // if that date is today, and it hasn't been counted
     if (pstActDay === pstToday && !rec.racedToday) {
       rec.racedToday = true;
       if (rec.current === 0) rec.curStart = lastActMs;
@@ -163,7 +163,7 @@ async function writeStreaks(board) {
 
   saveState(state);
 
-  // rebuild your JSON file with streaks.current & streaks.allTime
+  // rebuild JSON file with streaks.current & streaks.allTime
   const base   = JSON.parse(fs.readFileSync(DATA_PATH,'utf8'));
   const ranked = base.board;
 
