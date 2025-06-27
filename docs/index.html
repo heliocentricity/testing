@@ -11,17 +11,12 @@
     .font-lato { font-family: 'Lato', sans-serif; }
     th.sortable { cursor: pointer; user-select: none; }
     .table-with-suns {
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .table-with-suns::after {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: url('assets/suns.png') center/cover no-repeat;
-      opacity: 0.07;
-      pointer-events: none;
-      z-index: 1;
+      opacity: 0.07; pointer-events: none; z-index: 1;
     }
     .table-with-suns tr { position: relative; z-index: 0; }
     .table-with-suns th,
@@ -51,29 +46,31 @@
         </button>
       </div>
       <!-- Panel under tabs -->
-      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-b-lg rounded-tr-lg overflow-hidden">
+      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-hidden">
         <!-- Sub-tabs -->
         <div class="flex border-b border-slate-700 px-4 py-2">
-          <div id="sub-tourney" class="flex">
+          <!-- Tournament date -->
+          <div id="sub-tourney" class="inline-flex border border-slate-700 rounded-lg overflow-hidden">
             <button id="sub-date"
-                    class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
+                    class="px-3 py-1 text-sm bg-yellow-300 text-gray-900 hover:bg-yellow-200">
               6/26/25 – 7/23/25
             </button>
           </div>
-          <div id="sub-streaks" class="hidden inline-flex ml-2 border-b border-slate-700">
+          <!-- Streak subtoggles -->
+          <div id="sub-streaks" class="hidden inline-flex border border-slate-700 rounded-lg overflow-hidden ml-2">
             <button id="sub-current"
-                    class="px-3 py-1 text-sm rounded-tl-lg bg-yellow-400 text-gray-900 hover:bg-yellow-300">
+                    class="px-3 py-1 text-sm bg-yellow-300 text-gray-900 hover:bg-yellow-200">
               Current
             </button>
             <button id="sub-all"
-                    class="px-3 py-1 text-sm rounded-tr-lg bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400">
+                    class="px-3 py-1 text-sm bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400">
               All Time
             </button>
           </div>
         </div>
         <!-- Table container -->
         <div id="table-container" class="table-with-suns">
-          <table class="min-w-full rounded-b-lg">
+          <table class="min-w-full">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
           </table>
@@ -113,9 +110,7 @@
         <p class="text-xs text-gray-400 mb-0">
           We reserve the right to disqualify you if we believe you have cheated (e.g. botting).
           Please make sure you are adhering to
-          <a href="https://www.nitrotype.com/support/tos/"
-             target="_blank"
-             class="underline text-blue-300">
+          <a href="https://www.nitrotype.com/support/tos/" target="_blank" class="underline text-blue-300">
             Nitro Type’s TOS</a>. Thank you!
         </p>
       </div>
@@ -123,17 +118,12 @@
         <h2 class="text-lg font-semibold text-yellow-400 mb-2">Links</h2>
         <ul class="text-sm space-y-1">
           <li>
-            <a href="https://www.nitrotype.com/team/HELIOS"
-               target="_blank"
-               class="underline">
-              <span class="text-yellow-300">[HELIOS]</span>
-              <span class="text-blue-300"> on Nitro Type</span>
+            <a href="https://www.nitrotype.com/team/HELIOS" target="_blank" class="underline">
+              <span class="text-yellow-300">[HELIOS]</span> on Nitro Type
             </a>
           </li>
           <li>
-            <a href="https://padlet.com/icarus_/HELIOS"
-               target="_blank"
-               class="underline text-blue-300">
+            <a href="https://padlet.com/icarus_/HELIOS" target="_blank" class="underline text-blue-300">
               Padlet
             </a>
           </li>
@@ -144,16 +134,12 @@
         <p class="text-sm text-gray-300 mb-1">Website created by vioiynx.</p>
         <p class="text-sm text-gray-300 mb-1">
           Medal icons by
-          <a href="https://www.vecteezy.com/free-vector/1st-2nd-3rd-place"
-             target="_blank"
-             class="underline text-blue-300">
-            1st 2nd 3rd Place Vectors by Vecteezy</a>.
+          <a href="https://www.vecteezy.com/free-vector/1st-2nd-3rd-place" target="_blank" class="underline text-blue-300">
+            Vecteezy</a>.
         </p>
         <p class="text-sm text-gray-300">
           Sun motifs designed by
-          <a href="https://www.freepik.com"
-             target="_blank"
-             class="underline text-blue-300">
+          <a href="https://www.freepik.com" target="_blank" class="underline text-blue-300">
             Freepik</a>.
         </p>
       </div>
@@ -215,11 +201,11 @@
       const sc = document.getElementById('sub-current'),
             sa = document.getElementById('sub-all');
       sc.className = streakView==='current'
-        ? 'px-3 py-1 text-sm rounded-tl-lg bg-yellow-400 text-gray-900 hover:bg-yellow-300'
-        : 'px-3 py-1 text-sm rounded-tl-lg bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
+        ? 'px-3 py-1 text-sm bg-yellow-300 text-gray-900 hover:bg-yellow-200'
+        : 'px-3 py-1 text-sm bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
       sa.className = streakView==='allTime'
-        ? 'px-3 py-1 text-sm rounded-tr-lg bg-yellow-400 text-gray-900 hover:bg-yellow-300'
-        : 'px-3 py-1 text-sm rounded-tr-lg bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
+        ? 'px-3 py-1 text-sm bg-yellow-300 text-gray-900 hover:bg-yellow-200'
+        : 'px-3 py-1 text-sm bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
     }
 
     // --- Fetch + Init ---
@@ -359,18 +345,20 @@
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
-          <th id="th-start"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+          <th id="th-done"  class="px-4 py-3 text-center text-sm font-medium text-gray-300 sortable">
+            Done Today <span>${streakSort.key==='done'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
+          </th>
+          <th id="th-start" class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Start <span>${streakSort.key==='start'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-end"    class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+          <th id="th-end"   class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             End <span>${streakSort.key==='end'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-length" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
+          <th id="th-length"class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
             Length <span>${streakSort.key==='length'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th class="px-4 py-3 text-center text-sm font-medium text-gray-300">Done Today</th>
         </tr>`;
-      ['start','end','length'].forEach(k=>{
+      ['done','start','end','length'].forEach(k=>{
         document.getElementById(`th-${k}`).onclick=()=>{
           if(streakSort.key===k) streakSort.dir*=-1;
           else { streakSort.key=k; streakSort.dir=1; }
@@ -384,7 +372,11 @@
         let av=0,bv=0;
         if(streakSort.key==='length'){ av=a.length; bv=b.length; }
         else if(streakSort.key==='start'){ av=a.start||0; bv=b.start||0; }
-        else { av=a.end||0; bv=b.end||0; }
+        else if(streakSort.key==='end'){ av=a.end||0; bv=b.end||0; }
+        else { // done
+          av = a.racedToday?1:0;
+          bv = b.racedToday?1:0;
+        }
         return streakSort.dir*(av-bv);
       });
       const tb=document.getElementById('leaderboard-body');
@@ -426,10 +418,10 @@
           <td class="px-4 py-3">
             <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">${label}</span>
           </td>
+          <td class="px-4 py-3 text-center">${done}</td>
           <td class="px-4 py-3">${sd}</td>
           <td class="px-4 py-3">${ed}</td>
           <td class="px-4 py-3 text-right">${it.length||0}</td>
-          <td class="px-4 py-3 text-center">${done}</td>
         `;
         tb.appendChild(tr);
       });
