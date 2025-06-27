@@ -142,7 +142,7 @@
   </div>
 
   <script>
-    // 1) Countdown logic (unchanged)…
+    // 1) Countdown logic
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
@@ -173,7 +173,7 @@
         streakView = 'current',
         sortStates = { join:false, last:false, races:false };
 
-    // 3) Wiring up buttons
+    // 3) Button wiring
     document.getElementById('mode-tourney').onclick = () => {
       mode = 'tourney';
       document.getElementById('streak-options').classList.add('hidden');
@@ -191,29 +191,34 @@
       streakView = 'allTime'; render();
     };
 
-    // 4) Fetch and render initial
+    // 4) Fetch & render
     document.addEventListener('DOMContentLoaded', ()=>{
-      // tournament sorting headers
       ['join','last','races'].forEach(k=>{
         document.getElementById(`th-${k}`)
-          .addEventListener('click', ()=> {
+          .addEventListener('click', ()=>{
             sortStates[k] = !sortStates[k];
             renderTournamentHead();
             render();
           });
       });
 
-      fetch('data.json')
-        .then(r=>r.json())
-        .then(d=>{
+      fetch('./data.json')
+        .then(resp => {
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+          return resp.json();
+        })
+        .then(d => {
           data = d;
-          document.getElementById('updated-at').textContent = d.last_updated||'Unknown';
+          document.getElementById('updated-at').textContent = d.last_updated || 'Unknown';
           render();
         })
-        .catch(console.error);
+        .catch(err => {
+          console.error('Failed to load data.json:', err);
+          document.getElementById('updated-at').textContent = 'Error loading data';
+        });
     });
 
-    // 5) Rendering logic
+    // 5) Render dispatcher
     function render() {
       if (!data) return;
       if (mode === 'tourney') {
@@ -227,10 +232,9 @@
       }
     }
 
-    // Tournament head + body
+    // Tournament head & body...
     function renderTournamentHead() {
-      const th = document.getElementById('leaderboard-head');
-      th.innerHTML = `
+      document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name &amp; Title</th>
@@ -248,34 +252,26 @@
     }
     function renderTournamentBody() {
       let rows = data.board.slice();
-      // apply sorting
       ['join','last','races'].forEach(k=>{
         if (sortStates[k]) {
           const dir = sortStates[k]?1:-1;
-          rows.sort((a,b)=> dir*( (k==='races'?a.delta:a[k]) - (k==='races'?b.delta:b[k]) ));
+          rows.sort((a,b)=> dir*((k==='races'?a.delta:a[k]) - (k==='races'?b.delta:b[k])));
         }
       });
-
       const tb = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      let lastDelta=null, lastRank=0;
-      rows.forEach((it,idx)=>{
-        const rank = (it.delta!==lastDelta)?idx+1:lastRank;
-        lastDelta = it.delta; lastRank = rank;
-
-        // highlight top3
+      let lastD=null, lastR=0;
+      rows.forEach((it,i)=>{
+        const rank = (it.delta!==lastD)?i+1:lastR;
+        lastD=it.delta; lastR=rank;
         let base='', hover='hover:bg-slate-700';
         if(rank===1){ base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if(rank===3){ base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
-
-        // ordinal icon
         let ord = rank;
         if(rank===1) ord=`<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
         if(rank===2) ord=`<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
         if(rank===3) ord=`<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
-
-        // role badge
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
           officer:     'border-2 border-blue-400 text-blue-400 bg-transparent',
@@ -283,44 +279,30 @@
           vicecaptain: 'border-2 border-green-400 text-green-400 bg-transparent',
           member:      'text-gray-400'
         };
-        const badge = rc[key]||rc.member;
+        const badge = rc[key] || rc.member;
         let label = it.role.charAt(0).toUpperCase()+it.role.slice(1);
         if(key==='vicecaptain') label='Vice Captain';
-
-        // dates
-        const jd = it.joinStamp
-          ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
-        const ld = it.lastActivity
-          ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
-
-        // title color
+        const jd = it.joinStamp?new Date(it.joinStamp*1000).toLocaleDateString():'N/A';
+        const ld = it.lastActivity?new Date(it.lastActivity*1000).toLocaleDateString():'N/A';
         const tc = rank<=3?'text-yellow-400/70':'text-gray-400';
-        const thtml = it.title
-          ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
-
+        const thtml = it.title?`<div class="text-xs ${tc} mt-1">${it.title}</div>`:'';
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
         tr.onclick = ()=>window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
         tr.title = 'View Nitro Type profile';
         tr.innerHTML = `
           <td class="px-4 py-3">${ord}</td>
-          <td class="px-4 py-3 text-yellow-300 font-semibold">
-            ${it.displayName}${thtml}
-          </td>
-          <td class="px-4 py-3">
-            <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">
-              ${label}
-            </span>
-          </td>
+          <td class="px-4 py-3 text-yellow-300 font-semibold">${it.displayName}${thtml}</td>
+          <td class="px-4 py-3"><span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">${label}</span></td>
           <td class="px-4 py-3">${jd}</td>
           <td class="px-4 py-3">${ld}</td>
           <td class="px-4 py-3 text-right">${it.delta||0}</td>
         `;
-        document.getElementById('leaderboard-body').appendChild(tr);
+        tb.appendChild(tr);
       });
     }
 
-    // Streaks head + body
+    // Streaks head & body
     function renderStreakHead() {
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -334,15 +316,15 @@
     }
     function renderStreakBody() {
       const list = data.streaks[streakView] || [];
-      const tb = document.getElementById('leaderboard-body');
+      const tb   = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      list.forEach((it,idx)=>{
+      list.forEach((it,i)=>{
         const sd = it.start ? new Date(it.start).toLocaleDateString() : 'N/A';
-        const ed = it.end   ? new Date(it.end  ).toLocaleDateString() : 'N/A';
+        const ed = it.end   ? new Date(it.end).toLocaleDateString() : 'N/A';
         const tr = document.createElement('tr');
         tr.className = `cursor-default hover:bg-slate-700 align-middle`;
         tr.innerHTML = `
-          <td class="px-4 py-3">${idx+1}</td>
+          <td class="px-4 py-3">${i+1}</td>
           <td class="px-4 py-3">${it.displayName}</td>
           <td class="px-4 py-3">${it.role}</td>
           <td class="px-4 py-3">${sd}</td>
