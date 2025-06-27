@@ -1,17 +1,17 @@
 {
   "TEAM_NAME": "HELIOS",
   "START_DATE": "2025-06-24",
-  "last_updated": "June 26, 2025 at 10:16 PM PDT",
+  "last_updated": "June 27, 2025 at 12:40 AM PDT",
   "board": [
     {
       "username": "abot8",
       "displayName": "1400dglooo",
-      "racesPlayed": 34267,
+      "racesPlayed": 34387,
       "role": "officer",
       "title": "The Smasher",
       "joinStamp": 1750805902,
-      "lastActivity": 1751000960,
-      "delta": 1398
+      "lastActivity": 1751009959,
+      "delta": 1518
     },
     {
       "username": "tryhardwillwork",
@@ -46,12 +46,12 @@
     {
       "username": "aiy_infection",
       "displayName": "icarus - 10k soon",
-      "racesPlayed": 10239,
+      "racesPlayed": 10265,
       "role": "captain",
       "title": "Happy Vibes :)",
       "joinStamp": 1742486554,
-      "lastActivity": 1751000979,
-      "delta": 229
+      "lastActivity": 1751007685,
+      "delta": 255
     },
     {
       "username": "persionde",
@@ -66,12 +66,12 @@
     {
       "username": "soccer791",
       "displayName": "Airborne",
-      "racesPlayed": 13634,
+      "racesPlayed": 13636,
       "role": "member",
       "title": "Acute Tinselitis",
       "joinStamp": 1750457551,
-      "lastActivity": 1750996359,
-      "delta": 97
+      "lastActivity": 1751007022,
+      "delta": 99
     },
     {
       "username": "4978dd1c73bd50b93b895f4299eed6b8",
@@ -144,6 +144,16 @@
       "delta": 22
     },
     {
+      "username": "timmytimmy213",
+      "displayName": "timmytimmy213",
+      "racesPlayed": 4234,
+      "role": "officer",
+      "title": "Champion Chaser",
+      "joinStamp": 1743005762,
+      "lastActivity": 1751009654,
+      "delta": 22
+    },
+    {
       "username": "vdgyertikopzefrgh",
       "displayName": "vdgyertikopzefrgh",
       "racesPlayed": 10648,
@@ -154,16 +164,6 @@
       "delta": 16
     },
     {
-      "username": "timmytimmy213",
-      "displayName": "timmytimmy213",
-      "racesPlayed": 4227,
-      "role": "officer",
-      "title": "Champion Chaser",
-      "joinStamp": 1743005762,
-      "lastActivity": 1750962799,
-      "delta": 15
-    },
-    {
       "username": "dianac128",
       "displayName": "ryiichu",
       "racesPlayed": 1784,
@@ -172,6 +172,26 @@
       "joinStamp": 1750468101,
       "lastActivity": 1750948884,
       "delta": 14
+    },
+    {
+      "username": "32e1139354a044df2b8a66fcd8c41b39",
+      "displayName": "dmvprnc",
+      "racesPlayed": 362,
+      "role": "member",
+      "title": "Millionaire",
+      "joinStamp": 1751000503,
+      "lastActivity": 1751001720,
+      "delta": 8
+    },
+    {
+      "username": "4399e7a571cf827be64b714c30c899ef",
+      "displayName": "FuchsiaAzureCougar",
+      "racesPlayed": 389,
+      "role": "member",
+      "title": "Flora Fury",
+      "joinStamp": 1748723201,
+      "lastActivity": 1751009969,
+      "delta": 7
     },
     {
       "username": "2525de6c193656755826c3b612fe4f5c",
@@ -284,16 +304,6 @@
       "delta": 0
     },
     {
-      "username": "32e1139354a044df2b8a66fcd8c41b39",
-      "displayName": "dmvprnc",
-      "racesPlayed": 354,
-      "role": "member",
-      "title": "Millionaire",
-      "joinStamp": 1751000503,
-      "lastActivity": 1751000944,
-      "delta": 0
-    },
-    {
       "username": "f0dca54e9b8d6f1aa97d5bb4c608a50a",
       "displayName": "Vintagium",
       "racesPlayed": 1660,
@@ -384,16 +394,6 @@
       "delta": 0
     },
     {
-      "username": "4399e7a571cf827be64b714c30c899ef",
-      "displayName": "FuchsiaAzureCougar",
-      "racesPlayed": 382,
-      "role": "member",
-      "title": "Flora Fury",
-      "joinStamp": 1748723201,
-      "lastActivity": 1750408445,
-      "delta": 0
-    },
-    {
       "username": "cyconoxyls",
       "displayName": "cyconoxyls",
       "racesPlayed": 1290,
@@ -437,9 +437,46 @@
   "streaks": {
     "current": [
       {
+        "username": "abot8",
+        "displayName": "1400dglooo",
+        "role": "officer",
+        "title": "The Smasher",
+        "start": 1751009959000,
+        "end": 1751009959000,
+        "length": 1
+      },
+      {
+        "username": "aiy_infection",
+        "displayName": "icarus - 10k soon",
+        "role": "captain",
+        "title": "Happy Vibes :)",
+        "start": 1751007685000,
+        "end": 1751007685000,
+        "length": 1
+      },
+      {
+        "username": "4399e7a571cf827be64b714c30c899ef",
+        "displayName": "FuchsiaAzureCougar",
+        "role": "member",
+        "title": "Flora Fury",
+        "start": 1751009969000,
+        "end": 1751009969000,
+        "length": 1
+      },
+      {
+        "username": "timmytimmy213",
+        "displayName": "timmytimmy213",
+        "role": "officer",
+        "title": "Champion Chaser",
+        "start": 1751009654000,
+        "end": 1751009654000,
+        "length": 1
+      },
+      {
         "username": "rc0913",
         "displayName": "RicSuave",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -448,6 +485,7 @@
         "username": "superdavidj",
         "displayName": "FIood",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -456,6 +494,7 @@
         "username": "neiletsky",
         "displayName": "NoLimit",
         "role": "vicecaptain",
+        "title": "Speed Demon",
         "start": null,
         "end": null,
         "length": 0
@@ -464,6 +503,7 @@
         "username": "soccer791",
         "displayName": "Airborne",
         "role": "member",
+        "title": "Acute Tinselitis",
         "start": null,
         "end": null,
         "length": 0
@@ -472,6 +512,7 @@
         "username": "conquerer11k",
         "displayName": "ResilientRedDonkey",
         "role": "member",
+        "title": "Spring-a-round",
         "start": null,
         "end": null,
         "length": 0
@@ -480,6 +521,7 @@
         "username": "hotttbit",
         "displayName": "4060TI",
         "role": "member",
+        "title": "Flora Fury",
         "start": null,
         "end": null,
         "length": 0
@@ -488,6 +530,7 @@
         "username": "disfunction",
         "displayName": "TealCoralSole",
         "role": "member",
+        "title": "The Force",
         "start": null,
         "end": null,
         "length": 0
@@ -496,6 +539,7 @@
         "username": "sumimyangel",
         "displayName": "stephenJoester",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -504,6 +548,7 @@
         "username": "5fff3c41947a5b24ed13ddb1c73b1e55",
         "displayName": "ApricotIvoryFlea",
         "role": "member",
+        "title": "Comeback Kid",
         "start": null,
         "end": null,
         "length": 0
@@ -512,6 +557,7 @@
         "username": "opsy07",
         "displayName": "2fingertypist",
         "role": "member",
+        "title": "Green Streak",
         "start": null,
         "end": null,
         "length": 0
@@ -520,14 +566,7 @@
         "username": "dianac128",
         "displayName": "ryiichu",
         "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "abot8",
-        "displayName": "1400dglooo",
-        "role": "officer",
+        "title": "Expert Extraordinaire",
         "start": null,
         "end": null,
         "length": 0
@@ -536,6 +575,7 @@
         "username": "persionde",
         "displayName": "persionde",
         "role": "member",
+        "title": ":D",
         "start": null,
         "end": null,
         "length": 0
@@ -544,6 +584,7 @@
         "username": "b2cbc9dfc2058f59bdaf062719776245",
         "displayName": "Hypersound",
         "role": "member",
+        "title": "Eternal Spring",
         "start": null,
         "end": null,
         "length": 0
@@ -552,6 +593,7 @@
         "username": "ryan_po",
         "displayName": "RainbowPig38",
         "role": "member",
+        "title": ":D",
         "start": null,
         "end": null,
         "length": 0
@@ -560,6 +602,7 @@
         "username": "tryhardwillwork",
         "displayName": "Krowns",
         "role": "member",
+        "title": "Astronaut",
         "start": null,
         "end": null,
         "length": 0
@@ -568,6 +611,7 @@
         "username": "azamondiasthe2",
         "displayName": "Akravus",
         "role": "member",
+        "title": "A E S T H E T I C",
         "start": null,
         "end": null,
         "length": 0
@@ -576,6 +620,7 @@
         "username": "f49de7389426a7d9dfa859467b8bb877",
         "displayName": "AlyviaB",
         "role": "member",
+        "title": "Wampus Thwamper",
         "start": null,
         "end": null,
         "length": 0
@@ -584,6 +629,7 @@
         "username": "thecretor145",
         "displayName": "Trickster_illusoire",
         "role": "member",
+        "title": "All Night Racer",
         "start": null,
         "end": null,
         "length": 0
@@ -592,6 +638,7 @@
         "username": "gw2iscoollol",
         "displayName": "Leqlerc",
         "role": "member",
+        "title": "Nitro Burnout",
         "start": null,
         "end": null,
         "length": 0
@@ -600,6 +647,7 @@
         "username": "96adbea38b59bc5d736244c73d479514",
         "displayName": "Pineapple",
         "role": "member",
+        "title": "Secret Agent",
         "start": null,
         "end": null,
         "length": 0
@@ -608,6 +656,7 @@
         "username": "32e1139354a044df2b8a66fcd8c41b39",
         "displayName": "dmvprnc",
         "role": "member",
+        "title": "Millionaire",
         "start": null,
         "end": null,
         "length": 0
@@ -616,6 +665,7 @@
         "username": "2525de6c193656755826c3b612fe4f5c",
         "displayName": "Kenritz",
         "role": "member",
+        "title": "Olde School",
         "start": null,
         "end": null,
         "length": 0
@@ -624,6 +674,7 @@
         "username": "f0dca54e9b8d6f1aa97d5bb4c608a50a",
         "displayName": "Vintagium",
         "role": "member",
+        "title": "Green Streak",
         "start": null,
         "end": null,
         "length": 0
@@ -632,14 +683,7 @@
         "username": "viper_shot",
         "displayName": "v1per_sh0t",
         "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "aiy_infection",
-        "displayName": "icarus - 10k soon",
-        "role": "captain",
+        "title": "Legendary Lapper",
         "start": null,
         "end": null,
         "length": 0
@@ -648,6 +692,7 @@
         "username": "vdgyertikopzefrgh",
         "displayName": "vdgyertikopzefrgh",
         "role": "member",
+        "title": ":D",
         "start": null,
         "end": null,
         "length": 0
@@ -656,6 +701,7 @@
         "username": "efac1d20fd1dbd3ed0b4f03e90bc7b96",
         "displayName": "chatgpt typing this",
         "role": "member",
+        "title": "Catty Wampus",
         "start": null,
         "end": null,
         "length": 0
@@ -664,6 +710,7 @@
         "username": "richman11111",
         "displayName": "richman11111",
         "role": "member",
+        "title": "Original Gangster",
         "start": null,
         "end": null,
         "length": 0
@@ -672,6 +719,7 @@
         "username": "slow_typer4ubest",
         "displayName": "veryslowtypist",
         "role": "member",
+        "title": "Raw Racing Recruit",
         "start": null,
         "end": null,
         "length": 0
@@ -680,6 +728,7 @@
         "username": "c160d3791fc9b027da843b2df727d345",
         "displayName": "DarkAchromaticCamel",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -688,6 +737,7 @@
         "username": "407017f3a63e1d9f1bc27590024a284f",
         "displayName": "JoshAbner13",
         "role": "member",
+        "title": "Raw Racing Recruit",
         "start": null,
         "end": null,
         "length": 0
@@ -696,6 +746,7 @@
         "username": "01dda282fb97c0a298a6a18e8eac8d8d",
         "displayName": "Juris Doctor",
         "role": "officer",
+        "title": "Eggsecutive",
         "start": null,
         "end": null,
         "length": 0
@@ -704,6 +755,7 @@
         "username": "4978dd1c73bd50b93b895f4299eed6b8",
         "displayName": "Mystic",
         "role": "member",
+        "title": "Millionaire",
         "start": null,
         "end": null,
         "length": 0
@@ -712,22 +764,7 @@
         "username": "1400dgloo",
         "displayName": "1400dgloo",
         "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "4399e7a571cf827be64b714c30c899ef",
-        "displayName": "FuchsiaAzureCougar",
-        "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "timmytimmy213",
-        "displayName": "timmytimmy213",
-        "role": "officer",
+        "title": "Pro Pacer",
         "start": null,
         "end": null,
         "length": 0
@@ -736,6 +773,7 @@
         "username": "vioiynx",
         "displayName": "vioiynx",
         "role": "vicecaptain",
+        "title": "Oh Em Gee!",
         "start": null,
         "end": null,
         "length": 0
@@ -744,6 +782,7 @@
         "username": "cyconoxyls",
         "displayName": "cyconoxyls",
         "role": "member",
+        "title": "[SKIPWRD]",
         "start": null,
         "end": null,
         "length": 0
@@ -752,6 +791,7 @@
         "username": "definitelynotdre",
         "displayName": "Curiosite",
         "role": "member",
+        "title": "Comeback Kid",
         "start": null,
         "end": null,
         "length": 0
@@ -760,6 +800,7 @@
         "username": "catman223s",
         "displayName": "catman223s",
         "role": "member",
+        "title": "Millionaire",
         "start": null,
         "end": null,
         "length": 0
@@ -768,6 +809,7 @@
         "username": "kudism",
         "displayName": "avalon",
         "role": "member",
+        "title": "Eternal Spring",
         "start": null,
         "end": null,
         "length": 0
@@ -776,6 +818,7 @@
         "username": "juderbucks81",
         "displayName": "juderbucks81",
         "role": "member",
+        "title": "Mystery Man",
         "start": null,
         "end": null,
         "length": 0
@@ -783,9 +826,46 @@
     ],
     "allTime": [
       {
+        "username": "abot8",
+        "displayName": "1400dglooo",
+        "role": "officer",
+        "title": "The Smasher",
+        "start": 1751009959000,
+        "end": 1751009959000,
+        "length": 1
+      },
+      {
+        "username": "aiy_infection",
+        "displayName": "icarus - 10k soon",
+        "role": "captain",
+        "title": "Happy Vibes :)",
+        "start": 1751007685000,
+        "end": 1751007685000,
+        "length": 1
+      },
+      {
+        "username": "4399e7a571cf827be64b714c30c899ef",
+        "displayName": "FuchsiaAzureCougar",
+        "role": "member",
+        "title": "Flora Fury",
+        "start": 1751009969000,
+        "end": 1751009969000,
+        "length": 1
+      },
+      {
+        "username": "timmytimmy213",
+        "displayName": "timmytimmy213",
+        "role": "officer",
+        "title": "Champion Chaser",
+        "start": 1751009654000,
+        "end": 1751009654000,
+        "length": 1
+      },
+      {
         "username": "rc0913",
         "displayName": "RicSuave",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -794,6 +874,7 @@
         "username": "superdavidj",
         "displayName": "FIood",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -802,6 +883,7 @@
         "username": "neiletsky",
         "displayName": "NoLimit",
         "role": "vicecaptain",
+        "title": "Speed Demon",
         "start": null,
         "end": null,
         "length": 0
@@ -810,6 +892,7 @@
         "username": "soccer791",
         "displayName": "Airborne",
         "role": "member",
+        "title": "Acute Tinselitis",
         "start": null,
         "end": null,
         "length": 0
@@ -818,6 +901,7 @@
         "username": "conquerer11k",
         "displayName": "ResilientRedDonkey",
         "role": "member",
+        "title": "Spring-a-round",
         "start": null,
         "end": null,
         "length": 0
@@ -826,6 +910,7 @@
         "username": "hotttbit",
         "displayName": "4060TI",
         "role": "member",
+        "title": "Flora Fury",
         "start": null,
         "end": null,
         "length": 0
@@ -834,6 +919,7 @@
         "username": "disfunction",
         "displayName": "TealCoralSole",
         "role": "member",
+        "title": "The Force",
         "start": null,
         "end": null,
         "length": 0
@@ -842,6 +928,7 @@
         "username": "sumimyangel",
         "displayName": "stephenJoester",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -850,6 +937,7 @@
         "username": "5fff3c41947a5b24ed13ddb1c73b1e55",
         "displayName": "ApricotIvoryFlea",
         "role": "member",
+        "title": "Comeback Kid",
         "start": null,
         "end": null,
         "length": 0
@@ -858,6 +946,7 @@
         "username": "opsy07",
         "displayName": "2fingertypist",
         "role": "member",
+        "title": "Green Streak",
         "start": null,
         "end": null,
         "length": 0
@@ -866,14 +955,7 @@
         "username": "dianac128",
         "displayName": "ryiichu",
         "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "abot8",
-        "displayName": "1400dglooo",
-        "role": "officer",
+        "title": "Expert Extraordinaire",
         "start": null,
         "end": null,
         "length": 0
@@ -882,6 +964,7 @@
         "username": "persionde",
         "displayName": "persionde",
         "role": "member",
+        "title": ":D",
         "start": null,
         "end": null,
         "length": 0
@@ -890,6 +973,7 @@
         "username": "b2cbc9dfc2058f59bdaf062719776245",
         "displayName": "Hypersound",
         "role": "member",
+        "title": "Eternal Spring",
         "start": null,
         "end": null,
         "length": 0
@@ -898,6 +982,7 @@
         "username": "ryan_po",
         "displayName": "RainbowPig38",
         "role": "member",
+        "title": ":D",
         "start": null,
         "end": null,
         "length": 0
@@ -906,6 +991,7 @@
         "username": "tryhardwillwork",
         "displayName": "Krowns",
         "role": "member",
+        "title": "Astronaut",
         "start": null,
         "end": null,
         "length": 0
@@ -914,6 +1000,7 @@
         "username": "azamondiasthe2",
         "displayName": "Akravus",
         "role": "member",
+        "title": "A E S T H E T I C",
         "start": null,
         "end": null,
         "length": 0
@@ -922,6 +1009,7 @@
         "username": "f49de7389426a7d9dfa859467b8bb877",
         "displayName": "AlyviaB",
         "role": "member",
+        "title": "Wampus Thwamper",
         "start": null,
         "end": null,
         "length": 0
@@ -930,6 +1018,7 @@
         "username": "thecretor145",
         "displayName": "Trickster_illusoire",
         "role": "member",
+        "title": "All Night Racer",
         "start": null,
         "end": null,
         "length": 0
@@ -938,6 +1027,7 @@
         "username": "gw2iscoollol",
         "displayName": "Leqlerc",
         "role": "member",
+        "title": "Nitro Burnout",
         "start": null,
         "end": null,
         "length": 0
@@ -946,6 +1036,7 @@
         "username": "96adbea38b59bc5d736244c73d479514",
         "displayName": "Pineapple",
         "role": "member",
+        "title": "Secret Agent",
         "start": null,
         "end": null,
         "length": 0
@@ -954,6 +1045,7 @@
         "username": "32e1139354a044df2b8a66fcd8c41b39",
         "displayName": "dmvprnc",
         "role": "member",
+        "title": "Millionaire",
         "start": null,
         "end": null,
         "length": 0
@@ -962,6 +1054,7 @@
         "username": "2525de6c193656755826c3b612fe4f5c",
         "displayName": "Kenritz",
         "role": "member",
+        "title": "Olde School",
         "start": null,
         "end": null,
         "length": 0
@@ -970,6 +1063,7 @@
         "username": "f0dca54e9b8d6f1aa97d5bb4c608a50a",
         "displayName": "Vintagium",
         "role": "member",
+        "title": "Green Streak",
         "start": null,
         "end": null,
         "length": 0
@@ -978,14 +1072,7 @@
         "username": "viper_shot",
         "displayName": "v1per_sh0t",
         "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "aiy_infection",
-        "displayName": "icarus - 10k soon",
-        "role": "captain",
+        "title": "Legendary Lapper",
         "start": null,
         "end": null,
         "length": 0
@@ -994,6 +1081,7 @@
         "username": "vdgyertikopzefrgh",
         "displayName": "vdgyertikopzefrgh",
         "role": "member",
+        "title": ":D",
         "start": null,
         "end": null,
         "length": 0
@@ -1002,6 +1090,7 @@
         "username": "efac1d20fd1dbd3ed0b4f03e90bc7b96",
         "displayName": "chatgpt typing this",
         "role": "member",
+        "title": "Catty Wampus",
         "start": null,
         "end": null,
         "length": 0
@@ -1010,6 +1099,7 @@
         "username": "richman11111",
         "displayName": "richman11111",
         "role": "member",
+        "title": "Original Gangster",
         "start": null,
         "end": null,
         "length": 0
@@ -1018,6 +1108,7 @@
         "username": "slow_typer4ubest",
         "displayName": "veryslowtypist",
         "role": "member",
+        "title": "Raw Racing Recruit",
         "start": null,
         "end": null,
         "length": 0
@@ -1026,6 +1117,7 @@
         "username": "c160d3791fc9b027da843b2df727d345",
         "displayName": "DarkAchromaticCamel",
         "role": "member",
+        "title": "Spring Speedster",
         "start": null,
         "end": null,
         "length": 0
@@ -1034,6 +1126,7 @@
         "username": "407017f3a63e1d9f1bc27590024a284f",
         "displayName": "JoshAbner13",
         "role": "member",
+        "title": "Raw Racing Recruit",
         "start": null,
         "end": null,
         "length": 0
@@ -1042,6 +1135,7 @@
         "username": "01dda282fb97c0a298a6a18e8eac8d8d",
         "displayName": "Juris Doctor",
         "role": "officer",
+        "title": "Eggsecutive",
         "start": null,
         "end": null,
         "length": 0
@@ -1050,6 +1144,7 @@
         "username": "4978dd1c73bd50b93b895f4299eed6b8",
         "displayName": "Mystic",
         "role": "member",
+        "title": "Millionaire",
         "start": null,
         "end": null,
         "length": 0
@@ -1058,22 +1153,7 @@
         "username": "1400dgloo",
         "displayName": "1400dgloo",
         "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "4399e7a571cf827be64b714c30c899ef",
-        "displayName": "FuchsiaAzureCougar",
-        "role": "member",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "timmytimmy213",
-        "displayName": "timmytimmy213",
-        "role": "officer",
+        "title": "Pro Pacer",
         "start": null,
         "end": null,
         "length": 0
@@ -1082,6 +1162,7 @@
         "username": "vioiynx",
         "displayName": "vioiynx",
         "role": "vicecaptain",
+        "title": "Oh Em Gee!",
         "start": null,
         "end": null,
         "length": 0
@@ -1090,6 +1171,7 @@
         "username": "cyconoxyls",
         "displayName": "cyconoxyls",
         "role": "member",
+        "title": "[SKIPWRD]",
         "start": null,
         "end": null,
         "length": 0
@@ -1098,6 +1180,7 @@
         "username": "definitelynotdre",
         "displayName": "Curiosite",
         "role": "member",
+        "title": "Comeback Kid",
         "start": null,
         "end": null,
         "length": 0
@@ -1106,6 +1189,7 @@
         "username": "catman223s",
         "displayName": "catman223s",
         "role": "member",
+        "title": "Millionaire",
         "start": null,
         "end": null,
         "length": 0
@@ -1114,6 +1198,7 @@
         "username": "kudism",
         "displayName": "avalon",
         "role": "member",
+        "title": "Eternal Spring",
         "start": null,
         "end": null,
         "length": 0
@@ -1122,6 +1207,7 @@
         "username": "juderbucks81",
         "displayName": "juderbucks81",
         "role": "member",
+        "title": "Mystery Man",
         "start": null,
         "end": null,
         "length": 0
