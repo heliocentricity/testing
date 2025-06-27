@@ -1,70 +1,82 @@
 // scripts/update.js
 
-const fs      = require('fs');
-const path    = require('path');
-const axios   = require('axios');
-const Database = require('@replit/database');
+const fs    = require('fs');
+const path  = require('path');
+const axios = require('axios');
 
-const db          = new Database();
-const CONFIG_PATH = path.join(__dirname, '..', 'baseline.json');
-const DATA_PATH   = path.join(__dirname, '..', 'docs',     'data.json');
+const CONFIG_PATH  = path.join(__dirname, '..', 'baseline.json');
+const DATA_PATH    = path.join(__dirname, '..', 'docs',     'data.json');
+const STREAKS_PATH = path.join(__dirname, '..', 'streaks.json');
 
-// --- load your config ---
+// --- load config & utility paths ---
 const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 const { TEAM_NAME, START_DATE } = config;
 
-// --- 1) Fetch full team roster from NitroType API via ScraperAPI ---
+// --- 1) Fetch leaderboard via ScraperAPI ---
 async function fetchLeaderboard() {
   const targetUrl = `https://www.nitrotype.com/api/v2/teams/${TEAM_NAME}`;
   const proxyUrl  = `http://api.scraperapi.com`
                   + `?api_key=${process.env.SCRAPERAPI_KEY}`
                   + `&url=${encodeURIComponent(targetUrl)}`;
-  const res = await axios.get(proxyUrl);
-  const body = res.data;
+  const { data: body } = await axios.get(proxyUrl);
+
   if (body.status !== 'OK' || !body.results?.members) {
     console.error('Unexpected JSON:', JSON.stringify(body).slice(0,200));
     throw new Error('Invalid team JSON');
   }
 
-  // map into the shape we need, including your role overrides:
   return body.results.members.map(m => {
     let role = m.role;
     if (m.username === 'aiy_infection') role = 'captain';
     if (['vioiynx','neiletsky'].includes(m.username)) role = 'vicecaptain';
     return {
-      username:     m.username,
-      displayName:  m.displayName,
-      racesPlayed:  m.racesPlayed,
-      role,                    // officer|captain|member|vicecaptain
-      title:         m.title,
-      joinStamp:     m.joinStamp,
-      lastActivity:  m.lastActivity
+      username:    m.username,
+      displayName: m.displayName,
+      racesPlayed: m.racesPlayed,
+      role,                   // officer|captain|member|vicecaptain
+      title:        m.title,
+      joinStamp:    m.joinStamp,
+      lastActivity: m.lastActivity
     };
   });
 }
 
-// --- 2) Helper to get a single user’s racesPlayed ---
+// --- helper to fetch a single user's racesPlayed ---
 async function fetchRaces(username) {
-  const members = await fetchLeaderboard();
-  const m = members.find(x => x.username === username);
+  const board = await fetchLeaderboard();
+  const m = board.find(x => x.username === username);
   return m ? m.racesPlayed : 0;
 }
 
-// --- 3) Initialize baseline.json if missing ---
+// --- load or init streaks file ---
+function loadStreakState() {
+  if (fs.existsSync(STREAKS_PATH)) {
+    return JSON.parse(fs.readFileSync(STREAKS_PATH,'utf8'));
+  } else {
+    return { streaks: {}, prevCount: {} };
+  }
+}
+function saveStreakState(state) {
+  fs.writeFileSync(STREAKS_PATH,
+    JSON.stringify(state, null, 2), 'utf8');
+}
+
+// --- 2) Ensure baseline.json has all users ---
 async function ensureBaseline() {
   const board = await fetchLeaderboard();
-  config.baseline = config.baseline || {};
+  config.baseline = config.baseline||{};
   board.forEach(u => {
     if (!Number.isInteger(config.baseline[u.username])) {
       config.baseline[u.username] = u.racesPlayed;
       console.log(`Baseline[${u.username}] = ${u.racesPlayed}`);
     }
   });
-  fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2));
+  fs.writeFileSync(CONFIG_PATH,
+    JSON.stringify(config, null, 2), 'utf8');
 }
 
-// --- 4) Update docs/data.json with tournament standings ---
-async function updateData() {
+// --- 3) Update tournament data.json ---
+async function updateTournament() {
   const board   = await fetchLeaderboard();
   const results = board
     .map(u => ({
@@ -76,13 +88,13 @@ async function updateData() {
   results.forEach(r => console.log(`Delta[${r.username}] = ${r.delta}`));
 
   const now = new Date();
-  const last_updated = now.toLocaleString('en-US', {
-    timeZone:      'America/Los_Angeles',
-    month:         'long',
-    day:           'numeric',
-    year:          'numeric',
-    hour:          'numeric',
-    minute:       '2-digit',
+  const last_updated = now.toLocaleString('en-US',{
+    timeZone: 'America/Los_Angeles',
+    month:    'long',
+    day:      'numeric',
+    year:     'numeric',
+    hour:      'numeric',
+    minute:   '2-digit',
     timeZoneName: 'short'
   });
 
@@ -92,69 +104,73 @@ async function updateData() {
     last_updated,
     board: results
   };
-  fs.writeFileSync(DATA_PATH, JSON.stringify(out, null, 2));
+  fs.writeFileSync(DATA_PATH,
+    JSON.stringify(out, null, 2), 'utf8');
 }
 
-// --- 5) Update streaks in DB and merge them into docs/data.json ---
+// --- 4) Update streaks.json and merge into data.json ---
 async function updateStreaks() {
-  const streaksKey = 'streaks';
-  // load or init
-  const raw = (await db.get(streaksKey)) || {};
+  const state = loadStreakState();
+  const members = await fetchLeaderboard();
   const nowMs = Date.now();
 
-  const members = await fetchLeaderboard();
-  // set up prevCount defaults
-  for (const m of members) {
-    if (!raw[m.username]) {
-      raw[m.username] = {
-        current:  0, curStart: null, curEnd: null,
-        longest:  0, longStart: null, longEnd: null
+  // ensure every member has an entry
+  members.forEach(m => {
+    if (!state.streaks[m.username]) {
+      state.streaks[m.username] = {
+        current: 0, curStart: null, curEnd: null,
+        longest: 0, longStart: null, longEnd: null
       };
     }
-  }
+    if (state.prevCount[m.username] == null) {
+      state.prevCount[m.username] = m.racesPlayed;
+    }
+  });
 
   // process each member
   for (const m of members) {
     const u = m.username;
-    const prev = (await db.get(`prevCount:${u}`)) || 0;
+    const prev = state.prevCount[u] || 0;
     const curr = await fetchRaces(u);
-    await db.set(`prevCount:${u}`, curr);
+    state.prevCount[u] = curr;
 
-    const rec = raw[u];
+    const rec = state.streaks[u];
     if (curr > prev) {
-      // raced → extend or start
+      // extended streak
       if (rec.current === 0) rec.curStart = nowMs;
       rec.current += 1;
-      rec.curEnd    = nowMs;
+      rec.curEnd = nowMs;
     } else if (rec.current > 0) {
-      // streak broken → check longest
+      // streak broken → update longest
       if (rec.current > rec.longest) {
         rec.longest   = rec.current;
         rec.longStart = rec.curStart;
         rec.longEnd   = rec.curEnd;
       }
-      rec.current = 0;
+      rec.current  = 0;
       rec.curStart = rec.curEnd = null;
     }
   }
-  // save back to DB
-  await db.set(streaksKey, raw);
 
-  // now read the existing data.json
-  const fileData = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+  // save streak state
+  saveStreakState(state);
+
+  // read existing tournament data
+  const fileData = JSON.parse(fs.readFileSync(DATA_PATH,'utf8'));
   const { TEAM_NAME, START_DATE, last_updated, board } = fileData;
 
-  // build two sorted lists
+  // build streaks lists
   const current = [];
   const allTime = [];
-  for (const [u,rec] of Object.entries(raw)) {
-    const m = members.find(x => x.username === u) || {};
+  members.forEach(m => {
+    const u = m.username;
+    const rec = state.streaks[u];
     const base = {
       username:    u,
-      displayName: m.displayName || u,
-      role:        m.role        || 'member'
+      displayName: m.displayName,
+      role:        m.role
     };
-    current.push({
+    current.push ({
       ...base,
       start: rec.curStart,
       end:   rec.curEnd,
@@ -166,11 +182,11 @@ async function updateStreaks() {
       end:   rec.longEnd,
       length: rec.longest
     });
-  }
-  current.sort((a,b)=> b.length - a.length);
-  allTime.sort((a,b)=> b.length - a.length);
+  });
+  current.sort((a,b)=>b.length - a.length);
+  allTime.sort((a,b)=>b.length - a.length);
 
-  // merge into docs/data.json
+  // merge and write final data.json
   const out = {
     TEAM_NAME,
     START_DATE,
@@ -178,14 +194,15 @@ async function updateStreaks() {
     board,
     streaks: { current, allTime }
   };
-  fs.writeFileSync(DATA_PATH, JSON.stringify(out, null, 2));
+  fs.writeFileSync(DATA_PATH,
+    JSON.stringify(out, null, 2), 'utf8');
 }
 
-// --- 6) Drive it all ---  
-(async function main(){
+// --- 5) Execute ---
+;(async function main(){
   try {
     await ensureBaseline();
-    await updateData();
+    await updateTournament();
     await updateStreaks();
   } catch(err) {
     console.error(err);
