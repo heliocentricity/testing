@@ -1,17 +1,17 @@
 {
   "TEAM_NAME": "HELIOS",
   "START_DATE": "2025-06-24",
-  "last_updated": "June 27, 2025 at 12:40 AM PDT",
+  "last_updated": "June 27, 2025 at 2:08 AM PDT",
   "board": [
     {
       "username": "abot8",
       "displayName": "1400dglooo",
-      "racesPlayed": 34387,
+      "racesPlayed": 34416,
       "role": "officer",
       "title": "The Smasher",
       "joinStamp": 1750805902,
-      "lastActivity": 1751009959,
-      "delta": 1518
+      "lastActivity": 1751011932,
+      "delta": 1547
     },
     {
       "username": "tryhardwillwork",
@@ -36,12 +36,12 @@
     {
       "username": "neiletsky",
       "displayName": "NoLimit",
-      "racesPlayed": 10755,
+      "racesPlayed": 10768,
       "role": "vicecaptain",
       "title": "Speed Demon",
       "joinStamp": 1744741826,
-      "lastActivity": 1750956346,
-      "delta": 265
+      "lastActivity": 1751014151,
+      "delta": 278
     },
     {
       "username": "aiy_infection",
@@ -74,6 +74,16 @@
       "delta": 99
     },
     {
+      "username": "thecretor145",
+      "displayName": "Trickster_illusoire",
+      "racesPlayed": 5123,
+      "role": "member",
+      "title": "All Night Racer",
+      "joinStamp": 1750988885,
+      "lastActivity": 1751013705,
+      "delta": 78
+    },
+    {
       "username": "4978dd1c73bd50b93b895f4299eed6b8",
       "displayName": "Mystic",
       "racesPlayed": 269,
@@ -82,16 +92,6 @@
       "joinStamp": 1750712571,
       "lastActivity": 1750974586,
       "delta": 68
-    },
-    {
-      "username": "thecretor145",
-      "displayName": "Trickster_illusoire",
-      "racesPlayed": 5109,
-      "role": "member",
-      "title": "All Night Racer",
-      "joinStamp": 1750988885,
-      "lastActivity": 1750994788,
-      "delta": 64
     },
     {
       "username": "conquerer11k",
@@ -114,6 +114,16 @@
       "delta": 49
     },
     {
+      "username": "4399e7a571cf827be64b714c30c899ef",
+      "displayName": "FuchsiaAzureCougar",
+      "racesPlayed": 424,
+      "role": "member",
+      "title": "Flora Fury",
+      "joinStamp": 1748723201,
+      "lastActivity": 1751014736,
+      "delta": 42
+    },
+    {
       "username": "gw2iscoollol",
       "displayName": "Leqlerc",
       "racesPlayed": 6246,
@@ -132,6 +142,16 @@
       "joinStamp": 1750984670,
       "lastActivity": 1750992061,
       "delta": 38
+    },
+    {
+      "username": "definitelynotdre",
+      "displayName": "Curiosite",
+      "racesPlayed": 689,
+      "role": "member",
+      "title": "Comeback Kid",
+      "joinStamp": 1750986063,
+      "lastActivity": 1751012063,
+      "delta": 26
     },
     {
       "username": "sumimyangel",
@@ -184,16 +204,6 @@
       "delta": 8
     },
     {
-      "username": "4399e7a571cf827be64b714c30c899ef",
-      "displayName": "FuchsiaAzureCougar",
-      "racesPlayed": 389,
-      "role": "member",
-      "title": "Flora Fury",
-      "joinStamp": 1748723201,
-      "lastActivity": 1751009969,
-      "delta": 7
-    },
-    {
       "username": "2525de6c193656755826c3b612fe4f5c",
       "displayName": "Kenritz",
       "racesPlayed": 1858,
@@ -241,6 +251,16 @@
       "title": "Spring Speedster",
       "joinStamp": 1745202493,
       "lastActivity": 1748398483,
+      "delta": 0
+    },
+    {
+      "username": "aharama",
+      "displayName": "Aharama",
+      "racesPlayed": 139245,
+      "role": "member",
+      "title": "Emperor",
+      "joinStamp": 1751010739,
+      "lastActivity": 1751014657,
       "delta": 0
     },
     {
@@ -404,16 +424,6 @@
       "delta": 0
     },
     {
-      "username": "definitelynotdre",
-      "displayName": "Curiosite",
-      "racesPlayed": 663,
-      "role": "member",
-      "title": "Comeback Kid",
-      "joinStamp": 1750986063,
-      "lastActivity": 1750988866,
-      "delta": 0
-    },
-    {
       "username": "catman223s",
       "displayName": "catman223s",
       "racesPlayed": 780,
@@ -437,12 +447,39 @@
   "streaks": {
     "current": [
       {
+        "username": "neiletsky",
+        "displayName": "NoLimit",
+        "role": "vicecaptain",
+        "title": "Speed Demon",
+        "start": 1751014151000,
+        "end": 1751014151000,
+        "length": 1
+      },
+      {
+        "username": "aharama",
+        "displayName": "Aharama",
+        "role": "member",
+        "title": "Emperor",
+        "start": 1751014657000,
+        "end": 1751014657000,
+        "length": 1
+      },
+      {
         "username": "abot8",
         "displayName": "1400dglooo",
         "role": "officer",
         "title": "The Smasher",
-        "start": 1751009959000,
-        "end": 1751009959000,
+        "start": 1751011932000,
+        "end": 1751011932000,
+        "length": 1
+      },
+      {
+        "username": "thecretor145",
+        "displayName": "Trickster_illusoire",
+        "role": "member",
+        "title": "All Night Racer",
+        "start": 1751013705000,
+        "end": 1751013705000,
         "length": 1
       },
       {
@@ -459,8 +496,8 @@
         "displayName": "FuchsiaAzureCougar",
         "role": "member",
         "title": "Flora Fury",
-        "start": 1751009969000,
-        "end": 1751009969000,
+        "start": 1751014736000,
+        "end": 1751014736000,
         "length": 1
       },
       {
@@ -470,6 +507,15 @@
         "title": "Champion Chaser",
         "start": 1751009654000,
         "end": 1751009654000,
+        "length": 1
+      },
+      {
+        "username": "definitelynotdre",
+        "displayName": "Curiosite",
+        "role": "member",
+        "title": "Comeback Kid",
+        "start": 1751012063000,
+        "end": 1751012063000,
         "length": 1
       },
       {
@@ -486,15 +532,6 @@
         "displayName": "FIood",
         "role": "member",
         "title": "Spring Speedster",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "neiletsky",
-        "displayName": "NoLimit",
-        "role": "vicecaptain",
-        "title": "Speed Demon",
         "start": null,
         "end": null,
         "length": 0
@@ -621,15 +658,6 @@
         "displayName": "AlyviaB",
         "role": "member",
         "title": "Wampus Thwamper",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "thecretor145",
-        "displayName": "Trickster_illusoire",
-        "role": "member",
-        "title": "All Night Racer",
         "start": null,
         "end": null,
         "length": 0
@@ -783,15 +811,6 @@
         "displayName": "cyconoxyls",
         "role": "member",
         "title": "[SKIPWRD]",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "definitelynotdre",
-        "displayName": "Curiosite",
-        "role": "member",
-        "title": "Comeback Kid",
         "start": null,
         "end": null,
         "length": 0
@@ -826,12 +845,39 @@
     ],
     "allTime": [
       {
+        "username": "neiletsky",
+        "displayName": "NoLimit",
+        "role": "vicecaptain",
+        "title": "Speed Demon",
+        "start": 1751014151000,
+        "end": 1751014151000,
+        "length": 1
+      },
+      {
+        "username": "aharama",
+        "displayName": "Aharama",
+        "role": "member",
+        "title": "Emperor",
+        "start": 1751014657000,
+        "end": 1751014657000,
+        "length": 1
+      },
+      {
         "username": "abot8",
         "displayName": "1400dglooo",
         "role": "officer",
         "title": "The Smasher",
-        "start": 1751009959000,
-        "end": 1751009959000,
+        "start": 1751011932000,
+        "end": 1751011932000,
+        "length": 1
+      },
+      {
+        "username": "thecretor145",
+        "displayName": "Trickster_illusoire",
+        "role": "member",
+        "title": "All Night Racer",
+        "start": 1751013705000,
+        "end": 1751013705000,
         "length": 1
       },
       {
@@ -848,8 +894,8 @@
         "displayName": "FuchsiaAzureCougar",
         "role": "member",
         "title": "Flora Fury",
-        "start": 1751009969000,
-        "end": 1751009969000,
+        "start": 1751014736000,
+        "end": 1751014736000,
         "length": 1
       },
       {
@@ -859,6 +905,15 @@
         "title": "Champion Chaser",
         "start": 1751009654000,
         "end": 1751009654000,
+        "length": 1
+      },
+      {
+        "username": "definitelynotdre",
+        "displayName": "Curiosite",
+        "role": "member",
+        "title": "Comeback Kid",
+        "start": 1751012063000,
+        "end": 1751012063000,
         "length": 1
       },
       {
@@ -875,15 +930,6 @@
         "displayName": "FIood",
         "role": "member",
         "title": "Spring Speedster",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "neiletsky",
-        "displayName": "NoLimit",
-        "role": "vicecaptain",
-        "title": "Speed Demon",
         "start": null,
         "end": null,
         "length": 0
@@ -1010,15 +1056,6 @@
         "displayName": "AlyviaB",
         "role": "member",
         "title": "Wampus Thwamper",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "thecretor145",
-        "displayName": "Trickster_illusoire",
-        "role": "member",
-        "title": "All Night Racer",
         "start": null,
         "end": null,
         "length": 0
@@ -1172,15 +1209,6 @@
         "displayName": "cyconoxyls",
         "role": "member",
         "title": "[SKIPWRD]",
-        "start": null,
-        "end": null,
-        "length": 0
-      },
-      {
-        "username": "definitelynotdre",
-        "displayName": "Curiosite",
-        "role": "member",
-        "title": "Comeback Kid",
         "start": null,
         "end": null,
         "length": 0
