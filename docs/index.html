@@ -92,7 +92,7 @@
           Tracks each member’s races since June 25, 2025. Updated hourly (PST/PDT).
         </p>
         <p class="text-xs text-gray-400 mb-0">
-          We reserve the right to disqualify you […] (e.g. botting).
+          We reserve the right to disqualify you from the tournament if we have good reason to believe that you have cheated (e.g. botting).
           Please make sure you are adhering to
           <a href="https://www.nitrotype.com/support/tos/"
              target="_blank"
@@ -142,21 +142,20 @@
   </div>
 
   <script>
-    // 1) Countdown logic
+    // 1) Countdown
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
     function updateCd() {
-      const end = new Date('2025-07-23T08:00:00-07:00'),
-            now = new Date(),
-            diff = Math.max(0, end - now),
+      const end  = new Date('2025-07-23T08:00:00-07:00'),
+            diff = Math.max(0, end - new Date()),
             days = Math.floor(diff/86400000),
             hrs  = Math.floor((diff%86400000)/3600000),
             mins = Math.floor((diff%3600000)/60000),
             secs = Math.floor((diff%60000)/1000);
       cdEl.textContent = exact
-        ? `${String(days).padStart(2,'0')}:${String(hrs).padStart(2,'0')}:` +
-          `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`
+        ? `${String(days).padStart(2,'0')}:${String(hrs).padStart(2,'0')}:`
+          +`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`
         : days;
     }
     btn.addEventListener('click', ()=>{
@@ -167,77 +166,75 @@
     setInterval(updateCd,1000);
     updateCd();
 
-    // 2) Data + mode state
+    // 2) State & mode
     let data = null,
         mode = 'tourney',
         streakView = 'current',
         sortStates = { join:false, last:false, races:false };
 
-    // 3) Button wiring
-    document.getElementById('mode-tourney').onclick = () => {
+    // 3) Button handlers
+    document.getElementById('mode-tourney').onclick = ()=>{
       mode = 'tourney';
       document.getElementById('streak-options').classList.add('hidden');
       render();
     };
-    document.getElementById('mode-streak').onclick = () => {
+    document.getElementById('mode-streak').onclick = ()=>{
       mode = 'streak';
       document.getElementById('streak-options').classList.remove('hidden');
       render();
     };
-    document.getElementById('streak-current').onclick = () => {
+    document.getElementById('streak-current').onclick = ()=>{
       streakView = 'current'; render();
     };
-    document.getElementById('streak-all').onclick = () => {
+    document.getElementById('streak-all').onclick = ()=>{
       streakView = 'allTime'; render();
     };
 
-    // 4) Fetch & render
+    // 4) Load data.json relative to this page’s location
     document.addEventListener('DOMContentLoaded', ()=>{
-      ['join','last','races'].forEach(k=>{
-        document.getElementById(`th-${k}`)
-          .addEventListener('click', ()=>{
-            sortStates[k] = !sortStates[k];
-            renderTournamentHead();
-            render();
-          });
-      });
+      // compute base path
+      const parts = window.location.pathname.split('/');
+      parts.pop();
+      const base = (parts.join('/')||'/').replace(/\/$/, '');
 
-      fetch('./data.json')
-        .then(resp => {
+      fetch(`${base}/data.json`)
+        .then(resp=>{
           if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
           return resp.json();
         })
-        .then(d => {
+        .then(d=>{
           data = d;
           document.getElementById('updated-at').textContent = d.last_updated || 'Unknown';
           render();
         })
-        .catch(err => {
+        .catch(err=>{
           console.error('Failed to load data.json:', err);
           document.getElementById('updated-at').textContent = 'Error loading data';
         });
     });
 
-    // 5) Render dispatcher
-    function render() {
+    // 5) Main render dispatcher
+    function render(){
       if (!data) return;
       if (mode === 'tourney') {
-        document.getElementById('leaderboard-table').classList.remove('table-with-suns');
+        document.getElementById('leaderboard-table')
+                .classList.remove('table-with-suns');
         renderTournamentHead();
         renderTournamentBody();
       } else {
-        document.getElementById('leaderboard-table').classList.add('table-with-suns');
+        document.getElementById('leaderboard-table')
+                .classList.add('table-with-suns');
         renderStreakHead();
         renderStreakBody();
       }
     }
 
-    // Tournament head & body...
-    function renderTournamentHead() {
+    // Tournament header & body
+    function renderTournamentHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
-          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name &amp; Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
           <th id="th-join" class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Member Since <span>${sortStates.join?'▲':'▼'}</span>
@@ -250,28 +247,35 @@
           </th>
         </tr>`;
     }
-    function renderTournamentBody() {
+    function renderTournamentBody(){
       let rows = data.board.slice();
+      // apply sort if toggled
       ['join','last','races'].forEach(k=>{
         if (sortStates[k]) {
           const dir = sortStates[k]?1:-1;
-          rows.sort((a,b)=> dir*((k==='races'?a.delta:a[k]) - (k==='races'?b.delta:b[k])));
+          rows.sort((a,b)=>
+            dir*((k==='races'?a.delta:a[k]) - (k==='races'?b.delta:b[k]))
+          );
         }
       });
+
       const tb = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      let lastD=null, lastR=0;
-      rows.forEach((it,i)=>{
-        const rank = (it.delta!==lastD)?i+1:lastR;
-        lastD=it.delta; lastR=rank;
+      let lastDelta=null, lastRank=0;
+      rows.forEach((it,idx)=>{
+        const rank = (it.delta!==lastDelta)?idx+1:lastRank;
+        lastDelta = it.delta; lastRank = rank;
+
         let base='', hover='hover:bg-slate-700';
         if(rank===1){ base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if(rank===3){ base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
+
         let ord = rank;
         if(rank===1) ord=`<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
         if(rank===2) ord=`<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
         if(rank===3) ord=`<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
           officer:     'border-2 border-blue-400 text-blue-400 bg-transparent',
@@ -279,21 +283,32 @@
           vicecaptain: 'border-2 border-green-400 text-green-400 bg-transparent',
           member:      'text-gray-400'
         };
-        const badge = rc[key] || rc.member;
+        const badge = rc[key]||rc.member;
         let label = it.role.charAt(0).toUpperCase()+it.role.slice(1);
         if(key==='vicecaptain') label='Vice Captain';
-        const jd = it.joinStamp?new Date(it.joinStamp*1000).toLocaleDateString():'N/A';
-        const ld = it.lastActivity?new Date(it.lastActivity*1000).toLocaleDateString():'N/A';
+
+        const jd = it.joinStamp
+          ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
+        const ld = it.lastActivity
+          ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
+
         const tc = rank<=3?'text-yellow-400/70':'text-gray-400';
         const thtml = it.title?`<div class="text-xs ${tc} mt-1">${it.title}</div>`:'';
+
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
         tr.onclick = ()=>window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
-        tr.title = 'View Nitro Type profile';
-        tr.innerHTML = `
+        tr.title   = 'View Nitro Type profile';
+        tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
-          <td class="px-4 py-3 text-yellow-300 font-semibold">${it.displayName}${thtml}</td>
-          <td class="px-4 py-3"><span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">${label}</span></td>
+          <td class="px-4 py-3 text-yellow-300 font-semibold">
+            ${it.displayName}${thtml}
+          </td>
+          <td class="px-4 py-3">
+            <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">
+              ${label}
+            </span>
+          </td>
           <td class="px-4 py-3">${jd}</td>
           <td class="px-4 py-3">${ld}</td>
           <td class="px-4 py-3 text-right">${it.delta||0}</td>
@@ -302,31 +317,31 @@
       });
     }
 
-    // Streaks head & body
-    function renderStreakHead() {
+    // Streaks header & body
+    function renderStreakHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
-          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name &amp; Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Streak Start</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Streak End</th>
           <th class="px-4 py-3 text-right text-sm font-medium text-gray-300">Length</th>
         </tr>`;
     }
-    function renderStreakBody() {
-      const list = data.streaks[streakView] || [];
+    function renderStreakBody(){
+      const list = data.streaks[streakView]||[];
       const tb   = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      list.forEach((it,i)=>{
+      list.forEach((it,idx)=>{
         const sd = it.start ? new Date(it.start).toLocaleDateString() : 'N/A';
-        const ed = it.end   ? new Date(it.end).toLocaleDateString() : 'N/A';
+        const ed = it.end   ? new Date(it.end).toLocaleDateString()   : 'N/A';
         const tr = document.createElement('tr');
         tr.className = `cursor-default hover:bg-slate-700 align-middle`;
-        tr.innerHTML = `
-          <td class="px-4 py-3">${i+1}</td>
+        tr.innerHTML=`
+          <td class="px-4 py-3">${idx+1}</td>
           <td class="px-4 py-3">${it.displayName}</td>
-          <td class="px-4 py-3">${it.role}</td>
+          <td class="px-4 py-3">${it.role.charAt(0).toUpperCase()+it.role.slice(1)}</td>
           <td class="px-4 py-3">${sd}</td>
           <td class="px-4 py-3">${ed}</td>
           <td class="px-4 py-3 text-right">${it.length}</td>
