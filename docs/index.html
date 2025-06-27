@@ -75,15 +75,7 @@
         </div>
         <!-- Table container (no padding) -->
         <div id="table-container" class="table-with-suns">
-          <table class="min-w-full rounded-b-lg table-fixed">
-            <colgroup>
-              <col style="width: 5%;" />
-              <col style="width: 30%;" />
-              <col style="width: 20%;" />
-              <col style="width: 15%;" />
-              <col style="width: 15%;" />
-              <col style="width: 15%;" />
-            </colgroup>
+          <table class="min-w-full rounded-b-lg">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
           </table>
@@ -121,10 +113,10 @@
             mins = Math.floor((diff%3600000)/60000),
             secs = Math.floor((diff%60000)/1000);
       cdEl.textContent = exact
-        ? `${String(days).padStart(2,'0')}:`
-          +`${String(hrs).padStart(2,'0')}:`
-          +`${String(mins).padStart(2,'0')}:`
-          +`${String(secs).padStart(2,'0')}`
+        ? ${String(days).padStart(2,'0')}:
+          +${String(hrs).padStart(2,'0')}:
+          +${String(mins).padStart(2,'0')}:
+          +${String(secs).padStart(2,'0')}
         : days;
     }
     btn.addEventListener('click', ()=>{
@@ -200,7 +192,7 @@
 
       const parts = window.location.pathname.split('/'); parts.pop();
       const base  = (parts.join('/')||'/').replace(/\/$/,'');
-      fetch(`${base}/data.json`)
+      fetch(${base}/data.json)
         .then(r=> r.ok? r.json(): Promise.reject(r.status))
         .then(d=>{
           data = d;
@@ -215,7 +207,7 @@
 
     // Tournament head & body
     function renderTourneyHead(){
-      document.getElementById('leaderboard-head').innerHTML = `
+      document.getElementById('leaderboard-head').innerHTML = 
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
@@ -229,9 +221,9 @@
           <th id="th-races" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
             Races <span>${tourneySort.key==='races'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-        </tr>`;
+        </tr>;
       ['join','last','races'].forEach(k=>{
-        document.getElementById(`th-${k}`)
+        document.getElementById(th-${k})
                 .onclick = ()=>{
                   if(tourneySort.key===k) tourneySort.dir *= -1;
                   else { tourneySort.key = k; tourneySort.dir = 1; }
@@ -268,10 +260,10 @@
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if(rank===3){ base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
 
-        let ord = `${rank}`;
-        if(rank===1) ord=`<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
-        if(rank===2) ord=`<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
-        if(rank===3) ord=`<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        let ord = ${rank};
+        if(rank===1) ord=<img src="assets/1st.png" alt="1st" class="h-6 inline"/>;
+        if(rank===2) ord=<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>;
+        if(rank===3) ord=<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>;
 
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
@@ -291,15 +283,15 @@
 
         const tc = rank<=3? 'text-yellow-400/70':'text-gray-400';
         const tht= it.title
-          ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
+          ? <div class="text-xs ${tc} mt-1">${it.title}</div> : '';
 
         const tr=document.createElement('tr');
-        tr.className=`cursor-pointer ${base} ${hover} align-middle`;
+        tr.className=cursor-pointer ${base} ${hover} align-middle;
         tr.onclick=()=>window.open(
-          `https://www.nitrotype.com/racer/${it.username}`,'_blank'
+          https://www.nitrotype.com/racer/${it.username},'_blank'
         );
         tr.title='View Nitro Type profile';
-        tr.innerHTML=`
+        tr.innerHTML=
           <td class="px-4 py-3">${ord}</td>
           <td class="px-4 py-3 text-yellow-300 font-semibold">
             ${it.displayName}${tht}
@@ -312,14 +304,14 @@
           <td class="px-4 py-3">${jd}</td>
           <td class="px-4 py-3">${ld}</td>
           <td class="px-4 py-3 text-right">${it.delta||0}</td>
-        `;
+        ;
         tb.appendChild(tr);
       });
     }
 
     // Streaks renderers
     function renderStreakHead(){
-      document.getElementById('leaderboard-head').innerHTML = `
+      document.getElementById('leaderboard-head').innerHTML = 
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
@@ -333,9 +325,9 @@
           <th id="th-length" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
             Length <span>${streakSort.key==='length'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-        </tr>`;
+        </tr>;
       ['start','end','length'].forEach(k=>{
-        document.getElementById(`th-${k}`).onclick = ()=>{
+        document.getElementById(th-${k}).onclick = ()=>{
           if(streakSort.key===k) streakSort.dir *= -1;
           else { streakSort.key=k; streakSort.dir=1; }
           render();
@@ -371,10 +363,10 @@
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if(rank===3){ base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
 
-        let ord = `${rank}`;
-        if(rank===1) ord=`<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
-        if(rank===2) ord=`<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
-        if(rank===3) ord=`<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
+        let ord = ${rank};
+        if(rank===1) ord=<img src="assets/1st.png" alt="1st" class="h-6 inline"/>;
+        if(rank===2) ord=<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>;
+        if(rank===3) ord=<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>;
 
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
@@ -392,15 +384,15 @@
 
         const tc = rank<=3? 'text-yellow-400/70':'text-gray-400';
         const tht= it.title
-          ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
+          ? <div class="text-xs ${tc} mt-1">${it.title}</div> : '';
 
         const tr=document.createElement('tr');
-        tr.className=`cursor-pointer ${base} ${hover} align-middle`;
+        tr.className=cursor-pointer ${base} ${hover} align-middle;
         tr.onclick=()=>window.open(
-          `https://www.nitrotype.com/racer/${it.username}`,'_blank'
+          https://www.nitrotype.com/racer/${it.username},'_blank'
         );
         tr.title='View Nitro Type profile';
-        tr.innerHTML=`
+        tr.innerHTML=
           <td class="px-4 py-3">${ord}</td>
           <td class="px-4 py-3 text-yellow-300 font-semibold">
             ${it.displayName}${tht}
@@ -413,7 +405,7 @@
           <td class="px-4 py-3">${sd}</td>
           <td class="px-4 py-3">${ed}</td>
           <td class="px-4 py-3 text-right">${it.length}</td>
-        `;
+        ;
         tb.appendChild(tr);
       });
     }
