@@ -41,14 +41,8 @@
           Tournament
         </button>
         <button id="tab-streak"
-                class="px-4 py-3 rounded-t-lg border border-slate-700 border-b-0 ml-2 flex items-center">
+                class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 ml-2">
           Streaks
-          <span class="relative group inline-block ml-2">
-            <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold">?</span>
-            <span class="hidden group-hover:block absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 px-2 py-1 text-xs text-gray-900 bg-yellow-400 rounded whitespace-nowrap z-10">
-              A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
-            </span>
-          </span>
         </button>
       </div>
       <!-- Panel under tabs -->
@@ -63,7 +57,7 @@
             </button>
           </div>
           <!-- Streak subtoggles -->
-          <div id="sub-streaks" class="hidden inline-flex border border-slate-700 rounded-lg overflow-hidden ml-2">
+          <div id="sub-streaks" class="hidden inline-flex border border-slate-700 rounded-lg overflow-hidden ml-1">
             <button id="sub-current"
                     class="px-3 py-1 text-sm bg-yellow-400 text-gray-900">
               Current
@@ -74,8 +68,16 @@
             </button>
           </div>
         </div>
-        <!-- Table container -->
-        <div id="table-container" class="table-with-suns">
+        <!-- Table container with question mark tooltip -->
+        <div id="table-container" class="table-with-suns relative">
+          <span class="absolute top-2 right-2 group inline-block">
+            <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold">
+              ?
+            </span>
+            <span class="hidden group-hover:block absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 px-3 py-2 text-xs text-gray-900 bg-yellow-400 rounded whitespace-nowrap z-10">
+              A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
+            </span>
+          </span>
           <table class="min-w-full">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
@@ -194,11 +196,11 @@
             ss = document.getElementById('sub-streaks');
       if(mode==='tourney'){
         t1.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400';
-        t2.className = 'px-4 py-3 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600 ml-2 flex items-center';
+        t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600 ml-2';
         st.classList.remove('hidden'); ss.classList.add('hidden');
       } else {
         t1.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600';
-        t2.className = 'px-4 py-3 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400 ml-2 flex items-center';
+        t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400 ml-2';
         st.classList.add('hidden');    ss.classList.remove('hidden');
       }
     }
