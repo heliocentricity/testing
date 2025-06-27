@@ -11,12 +11,17 @@
     .font-lato { font-family: 'Lato', sans-serif; }
     th.sortable { cursor: pointer; user-select: none; }
     .table-with-suns {
-      position: relative; overflow: hidden;
+      position: relative;
+      overflow: visible;    /* let the tooltip show */
     }
     .table-with-suns::after {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: url('assets/suns.png') center/cover no-repeat;
-      opacity: 0.07; pointer-events: none; z-index: 1;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 1;
     }
     .table-with-suns tr { position: relative; z-index: 0; }
     .table-with-suns th,
@@ -46,7 +51,7 @@
         </button>
       </div>
       <!-- Panel under tabs -->
-      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-hidden">
+      <div class="relative bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-hidden">
         <!-- Sub-tabs -->
         <div class="flex border-b border-slate-700 px-4 py-2">
           <!-- Tournament date -->
@@ -68,16 +73,19 @@
             </button>
           </div>
         </div>
-        <!-- Table container with question mark tooltip -->
-        <div id="table-container" class="table-with-suns relative">
-          <span class="absolute top-2 right-2 group inline-block">
-            <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold">
-              ?
-            </span>
-            <span class="hidden group-hover:block absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 px-3 py-2 text-xs text-gray-900 bg-yellow-400 rounded whitespace-nowrap z-10">
-              A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
-            </span>
+
+        <!-- Question-mark icon pinned to the panel -->
+        <span class="absolute top-2 right-2 group inline-block">
+          <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">
+            ?
           </span>
+          <span class="hidden group-hover:block absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 px-3 py-2 text-xs text-gray-900 bg-yellow-400 rounded whitespace-nowrap z-10">
+            A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you’ve raced today but your streak hasn’t updated yet.
+          </span>
+        </span>
+
+        <!-- Table container with sun background -->
+        <div id="table-container" class="table-with-suns">
           <table class="min-w-full">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
