@@ -52,7 +52,7 @@
       </div>
       <!-- Panel under tabs -->
       <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-hidden">
-        <!-- Sub-tabs -->
+        <!-- Sub-tabs + tooltip icon container -->
         <div id="subtabs" class="relative flex border-b border-slate-700 px-4 py-2">
           <!-- Tournament date -->
           <div id="sub-tourney" class="inline-flex border border-slate-700 rounded-lg overflow-hidden">
@@ -72,7 +72,7 @@
               All Time
             </button>
           </div>
-          <!-- Question-mark icon, hidden by default; will show only on streaks view -->
+          <!-- Question-mark icon, only shown in streaks mode -->
           <span id="tooltip-icon" class="hidden absolute right-2 top-1/2 transform -translate-y-1/2 group inline-block">
             <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">
               ?
@@ -106,12 +106,63 @@
           June 25th 8 AM (PST/PDT) – July 23rd 8 AM (PST/PDT)
         </div>
       </div>
-      <!-- ... other info boxes unchanged ... -->
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Prizes</h2>
+        <p class="text-sm">
+          <span class="text-yellow-400 font-bold">1st</span> –
+          <span class="text-green-400 font-semibold">$10,000,000 NITRO CASH</span><br>
+          <span class="text-yellow-400 font-bold">2nd</span> –
+          <span class="text-green-400 font-semibold">$5,000,000 NITRO CASH</span><br>
+          <span class="text-yellow-400 font-bold">3rd</span> –
+          <span class="text-green-400 font-semibold">$2,000,000 NITRO CASH</span>
+        </p>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Description</h2>
+        <p class="text-sm text-gray-300 mb-2">
+          Tracks each member’s races since June 25, 2025. Updated hourly (PST/PDT).
+        </p>
+        <p class="text-xs text-gray-400 mb-0">
+          We reserve the right to disqualify you if we believe you have cheated (e.g. botting).
+          Please make sure you are adhering to
+          <a href="https://www.nitrotype.com/support/tos/" target="_blank" class="underline text-blue-300">
+            Nitro Type’s TOS</a>. Thank you!
+        </p>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Links</h2>
+        <ul class="text-sm space-y-1">
+          <li>
+            <a href="https://www.nitrotype.com/team/HELIOS" target="_blank" class="underline">
+              <span class="text-yellow-300">[HELIOS]</span> on Nitro Type
+            </a>
+          </li>
+          <li>
+            <a href="https://padlet.com/icarus_/HELIOS" target="_blank" class="underline text-blue-300">
+              Padlet
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-yellow-400 mb-2">Credits</h2>
+        <p class="text-sm text-gray-300 mb-1">Website created by vioiynx.</p>
+        <p class="text-sm text-gray-300 mb-1">
+          Medal icons by
+          <a href="https://www.vecteezy.com/free-vector/1st-2nd-3rd-place" target="_blank" class="underline text-blue-300">
+            Vecteezy</a>.
+        </p>
+        <p class="text-sm text-gray-300">
+          Sun motifs designed by
+          <a href="https://www.freepik.com" target="_blank" class="underline text-blue-300">
+            Freepik</a>.
+        </p>
+      </div>
     </div>
   </div>
 
   <script>
-    // --- Countdown (unchanged) ---
+    // Countdown
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
@@ -137,21 +188,20 @@
     setInterval(updateCd, 1000);
     updateCd();
 
-    // --- State & Sorting ---
+    // State & Sorting
     let data        = null,
         mode        = 'tourney',
         streakView  = 'current',
         tourneySort = { key:'races', dir:-1 },
         streakSort  = { key:'length', dir:-1 };
 
-    // --- Tab Styling ---
+    // Tab Styling and tooltip icon toggle
     function updateTabs(){
-      const t1 = document.getElementById('tab-tourney'),
-            t2 = document.getElementById('tab-streak'),
-            st = document.getElementById('sub-tourney'),
-            ss = document.getElementById('sub-streaks'),
+      const t1   = document.getElementById('tab-tourney'),
+            t2   = document.getElementById('tab-streak'),
+            st   = document.getElementById('sub-tourney'),
+            ss   = document.getElementById('sub-streaks'),
             icon = document.getElementById('tooltip-icon');
-
       if (mode === 'tourney') {
         t1.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400';
         t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600 ml-2';
@@ -178,7 +228,7 @@
         : 'px-3 py-1 text-sm bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-yellow-400';
     }
 
-    // --- Fetch + Init ---
+    // Fetch and initialize
     document.addEventListener('DOMContentLoaded', ()=>{
       document.getElementById('tab-tourney').onclick = ()=>{ mode='tourney'; render(); };
       document.getElementById('tab-streak').onclick  = ()=>{ mode='streak'; render(); };
@@ -200,7 +250,7 @@
             lastD = it.delta;
             lastR = rk;
           });
-          // streak ranks + titles
+          // streak ranks and titles
           ['current','allTime'].forEach(view => {
             if (!data.streaks?.[view]) return;
             let lastL = null, lastRk = 0;
@@ -223,19 +273,21 @@
         });
     });
 
-    // --- Render Dispatcher ---
+    // Render dispatcher
     function render(){
       if (!data) return;
       updateTabs();
       updateSubtabs();
       if (mode === 'tourney') {
-        renderTourneyHead(); renderTourneyBody();
+        renderTourneyHead();
+        renderTourneyBody();
       } else {
-        renderStreakHead(); renderStreakBody();
+        renderStreakHead();
+        renderStreakBody();
       }
     }
 
-    // --- Tournament Head & Body (unchanged) ---
+    // Tournament head and body
     function renderTourneyHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -290,14 +342,14 @@
         };
         const badge = rc[key] || rc.member;
         let label = it.role.charAt(0).toUpperCase() + it.role.slice(1);
-        if (key==='vicecaptain') label='Vice Captain';
+        if (key==='vicecaptain') label = 'Vice Captain';
         const jd = it.joinStamp ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
         const ld = it.lastActivity ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
         const tc = rank <= 3 ? 'text-yellow-400/70' : 'text-gray-400';
         const titleHtml = it.title ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
-        tr.onclick = () => window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
+        tr.onclick = () => window.open(`https://www.nitrotype.com/racer/${it.username}','_blank');
         tr.title = 'View Nitro Type profile';
         tr.innerHTML = `
           <td class="px-4 py-3">${ord}</td>
@@ -315,7 +367,7 @@
       });
     }
 
-    // --- Streaks Head & Body ---
+    // Streaks head and body
     function renderStreakHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -331,12 +383,12 @@
           <th id="th-end"    class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             End <span>${streakSort.key==='end'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-length"class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
+          <th id="th-length" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
             Length <span>${streakSort.key==='length'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
         </tr>`;
-      ['done','start','end','length'].forEach(k=>{
-        document.getElementById(`th-${k}`).onclick = ()=>{
+      ['done','start','end','length'].forEach(k => {
+        document.getElementById(`th-${k}`).onclick = () => {
           if (streakSort.key === k) streakSort.dir *= -1;
           else { streakSort.key = k; streakSort.dir = 1; }
           render();
@@ -349,7 +401,7 @@
         let av=0, bv=0;
         if (streakSort.key==='length') { av=a.length; bv=b.length; }
         else if (streakSort.key==='start') { av=a.start||0; bv=b.start||0; }
-        else if (streakSort.key==='end') { av=a.end||0; bv=b.end||0; }
+        else if (streakSort.key==='end')   { av=a.end||0;   bv=b.end||0; }
         else { // done
           av = a.racedToday ? 1 : 0;
           bv = b.racedToday ? 1 : 0;
@@ -358,7 +410,7 @@
       });
       const tb = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      list.forEach(it=>{
+      list.forEach(it => {
         const rank = it.initialRank;
         let base='', hover='hover:bg-slate-700';
         if (rank===1) { base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
@@ -377,7 +429,7 @@
         };
         const badge = rc[key] || rc.member;
         let label = it.role.charAt(0).toUpperCase() + it.role.slice(1);
-        if (key==='vicecaptain') label='Vice Captain';
+        if (key==='vicecaptain') label = 'Vice Captain';
         const sd = it.start ? new Date(it.start).toLocaleDateString() : 'N/A';
         const ed = it.end   ? new Date(it.end).toLocaleDateString()   : 'N/A';
         const tc = rank <= 3 ? 'text-yellow-400/70' : 'text-gray-400';
@@ -387,7 +439,7 @@
           : '<span class="text-gray-500">-</span>';
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
-        tr.onclick = () => window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
+        tr.onclick = () => window.open(`https://www.nitrotype.com/racer/${it.username}','_blank');
         tr.title = 'View Nitro Type profile';
         tr.innerHTML = `
           <td class="px-4 py-3">${ord}</td>
