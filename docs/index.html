@@ -14,6 +14,7 @@
     .table-with-suns {
       position: relative;
       overflow: hidden;
+      border-radius: 0 0 0.5rem 0.5rem; /* match rounded-b-lg on the container */
     }
     .table-with-suns::after {
       content: '';
@@ -27,6 +28,11 @@
     .table-with-suns tr { position: relative; z-index: 0; }
     .table-with-suns th,
     .table-with-suns td { position: relative; z-index: 2; }
+
+    /* Ensure table itself has no extra radius (container handles it) */
+    table.rounded-b-none {
+      border-radius: 0 !important;
+    }
   </style>
 </head>
 
@@ -39,7 +45,7 @@
   </p>
 
   <!-- Top Tabs -->
-  <div id="tabs" class="flex">
+  <div id="tabs" class="flex mb-2">
     <button id="tab-tourney"
             class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0">
       Tournament
@@ -50,40 +56,42 @@
     </button>
   </div>
 
-  <!-- Panel: holds subtabs + table, and is tucked under the active tab -->
-  <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-b-lg overflow-hidden -mt-px">
-    <!-- Sub-tabs -->
-    <div id="subtabs" class="flex border-b border-slate-700 px-4 py-2">
-      <div id="sub-tourney" class="flex">
-        <button id="sub-date"
-                class="px-3 py-1 text-xs rounded-t bg-slate-700 text-yellow-400">
-          6/26/25 – 7/23/25
-        </button>
-      </div>
-      <div id="sub-streaks" class="hidden flex space-x-2 ml-2">
-        <button id="sub-current"
-                class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
-          Current
-        </button>
-        <button id="sub-all"
-                class="px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400">
-          All Time
-        </button>
+  <div class="flex space-x-6">
+    <!-- LEFT: panel + table (3/4 width) -->
+    <div class="w-3/4">
+      <!-- Panel containing subtabs + table -->
+      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-b-lg overflow-hidden">
+        <!-- Sub-tabs -->
+        <div id="subtabs" class="flex border-b border-slate-700 px-4 py-2">
+          <div id="sub-tourney" class="flex">
+            <button id="sub-date"
+                    class="px-3 py-1 text-xs rounded-t bg-slate-700 text-yellow-400">
+              6/26/25 – 7/23/25
+            </button>
+          </div>
+          <div id="sub-streaks" class="hidden flex space-x-2 ml-2">
+            <button id="sub-current"
+                    class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
+              Current
+            </button>
+            <button id="sub-all"
+                    class="px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400">
+              All Time
+            </button>
+          </div>
+        </div>
+
+        <!-- Table container -->
+        <div id="table-container" class="table-with-suns bg-slate-800/70 p-4">
+          <table class="min-w-full rounded-b-none">
+            <thead id="leaderboard-head" class="bg-slate-700"></thead>
+            <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- Table container -->
-    <div id="table-container" class="table-with-suns bg-slate-800/70 p-4">
-      <table class="min-w-full rounded-b-lg">
-        <thead id="leaderboard-head" class="bg-slate-700"></thead>
-        <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Info boxes (unchanged) -->
-  <div class="flex space-x-6 mt-6">
-    <div class="w-3/4"></div> <!-- placeholder to line up boxes -->
+    <!-- RIGHT: info boxes (1/4 width) -->
     <div class="w-1/4 space-y-6">
       <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4 text-center">
         <div id="countdown" class="text-4xl font-extrabold text-yellow-400 mb-1"></div>
@@ -158,13 +166,13 @@
   </div>
 
   <script>
-    // Countdown (unchanged)…
+    // -- countdown unchanged --
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
-    function updateCd() {
-      const end  = new Date('2025-07-23T08:00:00-07:00'),
-            diff = Math.max(0,end - new Date()),
+    function updateCd(){
+      const end = new Date('2025-07-23T08:00:00-07:00'),
+            diff = Math.max(0, end - new Date()),
             days = Math.floor(diff/86400000),
             hrs  = Math.floor((diff%86400000)/3600000),
             mins = Math.floor((diff%3600000)/60000),
@@ -177,19 +185,19 @@
         : days;
     }
     btn.addEventListener('click',()=>{
-      exact=!exact;
-      btn.textContent = exact?'Show days only':'Show exact countdown';
+      exact = !exact;
+      btn.textContent = exact ? 'Show days only' : 'Show exact countdown';
       updateCd();
     });
     setInterval(updateCd,1000);
     updateCd();
 
-    // State & sort flags
+    // -- state & sorting unchanged --
     let data=null, mode='tourney', streakView='current';
     let tourneySort={join:false,last:false,races:false},
         streakSort={start:false,end:false,length:false};
 
-    // Tab styling updates
+    // -- updateTabs & updateSubtabs logic remains exactly as before --
     function updateTabs(){
       const t1=document.getElementById('tab-tourney'),
             t2=document.getElementById('tab-streak');
@@ -201,7 +209,6 @@
         t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400 ml-2';
       }
     }
-
     function updateSubtabs(){
       const sd=document.getElementById('sub-date'),
             sc=document.getElementById('sub-current'),
@@ -218,7 +225,7 @@
       }
     }
 
-    // Main render driver
+    // -- main render driver unchanged --
     function render(){
       if(!data) return;
       updateTabs();
@@ -232,7 +239,7 @@
       }
     }
 
-    // Initial fetch & event wiring
+    // -- initial fetch & event wiring unchanged --
     document.addEventListener('DOMContentLoaded',()=>{
       document.getElementById('tab-tourney').onclick = ()=>{
         mode='tourney'; render();
@@ -247,7 +254,7 @@
         streakView='allTime'; render();
       };
 
-      // dynamic fetch path
+      // dynamic JSON path
       const parts = window.location.pathname.split('/'); parts.pop();
       const base  = (parts.join('/')||'/').replace(/\/$/,'');
       fetch(`${base}/data.json`)
@@ -263,9 +270,7 @@
         });
     });
 
-    // (Tournament & Streak renderers remain exactly as before...)
-    // ... [keep all your existing renderTourneyHead/Body and renderStreakHead/Body here] ...
-
+    // -- Tournament & Streak renderers remain exactly as before (omit for brevity) --
   </script>
 </body>
 </html>
