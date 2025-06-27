@@ -30,7 +30,6 @@
     .table-with-suns td { position: relative; z-index: 2; }
   </style>
 </head>
-
 <body class="bg-slate-900 text-gray-200 font-sans min-h-screen p-8">
   <h1 class="text-4xl font-extrabold mb-2 text-yellow-400">
     [HELIOS] $17 Million NTC Competition Leaderboard
@@ -39,58 +38,52 @@
     Last updated: <span id="updated-at" class="font-mono">Loading…</span>
   </p>
 
-  <!-- Top Tabs -->
-  <div id="tabs" class="flex mb-0">
-    <button id="tab-tourney"
-            class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0">
-      Tournament
-    </button>
-    <button id="tab-streak"
-            class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 ml-2">
-      Streaks
-    </button>
-  </div>
-
-  <!-- Panel (subtabs + table) -->
-  <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-b-lg overflow-hidden">
-    <!-- Sub-tabs -->
-    <div id="subtabs" class="flex border-b border-slate-700 px-4 py-2">
-      <div id="sub-tourney" class="flex">
-        <button id="sub-date"
-                class="px-3 py-1 text-xs rounded-t bg-slate-700 text-yellow-400">
-          6/26/25 – 7/23/25
+  <div class="flex space-x-6">
+    <!-- Left: tabs & table -->
+    <div class="w-3/4">
+      <!-- Top Tabs -->
+      <div id="tabs" class="flex mb-0">
+        <button id="tab-tourney" class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0">
+          Tournament
+        </button>
+        <button id="tab-streak" class="px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 ml-2">
+          Streaks
         </button>
       </div>
-      <div id="sub-streaks" class="hidden flex space-x-2 ml-2">
-        <button id="sub-current"
-                class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
-          Current
-        </button>
-        <button id="sub-all"
-                class="px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400">
-          All Time
-        </button>
+      <!-- Panel holding subtabs + table -->
+      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-b-lg overflow-hidden">
+        <!-- Sub-tabs -->
+        <div id="subtabs" class="flex border-b border-slate-700 px-4 py-2">
+          <div id="sub-tourney" class="flex">
+            <button id="sub-date" class="px-3 py-1 text-xs rounded-t bg-slate-700 text-yellow-400">
+              6/26/25 – 7/23/25
+            </button>
+          </div>
+          <div id="sub-streaks" class="hidden flex space-x-2 ml-2">
+            <button id="sub-current" class="px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400">
+              Current
+            </button>
+            <button id="sub-all" class="px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400">
+              All Time
+            </button>
+          </div>
+        </div>
+        <!-- Table -->
+        <div id="table-container" class="table-with-suns p-4">
+          <table class="min-w-full rounded-b-lg">
+            <thead id="leaderboard-head" class="bg-slate-700"></thead>
+            <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- Table -->
-    <div id="table-container" class="table-with-suns p-4">
-      <table class="min-w-full rounded-b-lg">
-        <thead id="leaderboard-head" class="bg-slate-700"></thead>
-        <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Info boxes (unchanged) -->
-  <div class="flex space-x-6 mt-6">
-    <div class="w-3/4"></div> <!-- spacer so boxes align right -->
+    <!-- Right: info boxes -->
     <div class="w-1/4 space-y-6">
       <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4 text-center">
         <div id="countdown" class="text-4xl font-extrabold text-yellow-400 mb-1"></div>
         <div class="text-sm text-yellow-400 mb-2">days left in tournament</div>
-        <button id="toggle-countdown"
-                class="px-2 py-0.5 bg-gray-700 text-xs rounded mt-1">
+        <button id="toggle-countdown" class="px-2 py-0.5 bg-gray-700 text-xs rounded mt-1">
           Show days only
         </button>
         <div class="text-xs text-gray-400 mt-2">
@@ -117,23 +110,20 @@
           We reserve the right to disqualify you if we believe you have cheated (e.g. botting).
           Please make sure you are adhering to
           <a href="https://www.nitrotype.com/support/tos/" target="_blank"
-             class="underline text-blue-300">
-            Nitro Type’s TOS</a>.Thank you!
+             class="underline text-blue-300">Nitro Type’s TOS</a>.Thank you!
         </p>
       </div>
       <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4">
         <h2 class="text-lg font-semibold text-yellow-400 mb-2">Links</h2>
         <ul class="text-sm space-y-1">
           <li>
-            <a href="https://www.nitrotype.com/team/HELIOS" target="_blank"
-               class="underline">
+            <a href="https://www.nitrotype.com/team/HELIOS" target="_blank" class="underline">
               <span class="text-yellow-300">[HELIOS]</span>
               <span class="text-blue-300"> on Nitro Type</span>
             </a>
           </li>
           <li>
-            <a href="https://padlet.com/icarus_/HELIOS" target="_blank"
-               class="underline text-blue-300">
+            <a href="https://padlet.com/icarus_/HELIOS" target="_blank" class="underline text-blue-300">
               Padlet
             </a>
           </li>
@@ -145,23 +135,19 @@
         <p class="text-sm text-gray-300 mb-1">
           Medal icons by
           <a href="https://www.vecteezy.com/free-vector/1st-2nd-3rd-place" target="_blank"
-             class="underline text-blue-300">
-            1st 2nd 3rd Place Vectors by Vecteezy</a>.
+             class="underline text-blue-300">1st 2nd 3rd Place Vectors by Vecteezy</a>.
         </p>
         <p class="text-sm text-gray-300">
           Sun motifs designed by
           <a href="https://www.freepik.com" target="_blank"
-             class="underline text-blue-300">
-            Freepik</a>.
+             class="underline text-blue-300">Freepik</a>.
         </p>
       </div>
     </div>
   </div>
 
   <script>
-    // ----------------
-    // Countdown logic
-    // ----------------
+    // Countdown
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
@@ -184,30 +170,32 @@
       btn.textContent = exact ? 'Show days only' : 'Show exact countdown';
       updateCd();
     });
-    setInterval(updateCd, 1000);
+    setInterval(updateCd,1000);
     updateCd();
 
-    // ----------------------
-    // State & Sort Tracking
-    // ----------------------
+    // State
     let data = null,
         mode = 'tourney',
         streakView = 'current',
-        tourneySort = { join:false, last:false, races:false },
-        streakSort = { start:false, end:false, length:false };
+        tourneySort = { key:'races', dir:-1 },
+        streakSort = { key:'length', dir:-1 };
 
-    // ----------------
-    // Tab Button Logic
-    // ----------------
+    // Tab updates
     function updateTabs(){
       const t1 = document.getElementById('tab-tourney'),
-            t2 = document.getElementById('tab-streak');
+            t2 = document.getElementById('tab-streak'),
+            st = document.getElementById('sub-tourney'),
+            ss = document.getElementById('sub-streaks');
       if(mode==='tourney'){
         t1.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400';
         t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600 ml-2';
+        st.classList.remove('hidden');
+        ss.classList.add('hidden');
       } else {
         t1.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-700 text-gray-400 hover:bg-slate-600';
         t2.className = 'px-4 py-2 rounded-t-lg border border-slate-700 border-b-0 bg-slate-800 text-yellow-400 ml-2';
+        st.classList.add('hidden');
+        ss.classList.remove('hidden');
       }
     }
 
@@ -218,18 +206,16 @@
       if(mode==='tourney'){
         sd.className = 'px-3 py-1 text-xs rounded-t bg-slate-700 text-yellow-400';
       } else {
-        sc.className = (streakView==='current'
+        sc.className = streakView==='current'
           ? 'px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400'
-          : 'px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400');
-        sa.className = (streakView==='allTime'
+          : 'px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400';
+        sa.className = streakView==='allTime'
           ? 'px-3 py-1 text-sm rounded-t bg-slate-700 text-yellow-400'
-          : 'px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400');
+          : 'px-3 py-1 text-sm rounded-t bg-slate-700 text-gray-400 hover:text-yellow-400';
       }
     }
 
-    // --------------
-    // Main render()
-    // --------------
+    // Render dispatcher
     function render(){
       if(!data) return;
       updateTabs();
@@ -243,32 +229,21 @@
       }
     }
 
-    // ----------------------
-    // Initialization & Fetch
-    // ----------------------
+    // Fetch + init
     document.addEventListener('DOMContentLoaded', ()=>{
-      document.getElementById('tab-tourney').onclick = ()=>{
-        mode='tourney'; render();
-      };
-      document.getElementById('tab-streak').onclick = ()=>{
-        mode='streak'; render();
-      };
-      document.getElementById('sub-current').onclick = ()=>{
-        streakView='current'; render();
-      };
-      document.getElementById('sub-all').onclick = ()=>{
-        streakView='allTime'; render();
-      };
+      document.getElementById('tab-tourney').onclick = ()=>{ mode='tourney'; render(); };
+      document.getElementById('tab-streak').onclick = ()=>{ mode='streak'; render(); };
+      document.getElementById('sub-current').onclick = ()=>{ streakView='current'; render(); };
+      document.getElementById('sub-all').onclick     = ()=>{ streakView='allTime'; render(); };
 
-      // fetch data.json relative to this page
-      const parts = window.location.pathname.split('/');
-      parts.pop();
-      const base = (parts.join('/')||'/').replace(/\/$/,'');
+      // dynamic path
+      const parts = window.location.pathname.split('/'); parts.pop();
+      const base  = (parts.join('/')||'/').replace(/\/$/,'');
       fetch(`${base}/data.json`)
-        .then(r=> r.ok ? r.json() : Promise.reject(r.status))
+        .then(r=>r.ok ? r.json() : Promise.reject(r.status))
         .then(d=>{
           data = d;
-          document.getElementById('updated-at').textContent = d.last_updated || 'Unknown';
+          document.getElementById('updated-at').textContent = d.last_updated||'Unknown';
           render();
         })
         .catch(e=>{
@@ -277,47 +252,46 @@
         });
     });
 
-    // --------------------------------
-    // Tournament renderers (unchanged)
-    // --------------------------------
+    // Tournament renderers
     function renderTourneyHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
-          <th id="th-join"   class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
-            Member Since <span>${tourneySort.join?'▲':'▼'}</span>
+          <th id="th-join"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+            Member Since <span>${tourneySort.key==='join'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-last"   class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
-            Last Race <span>${tourneySort.last?'▲':'▼'}</span>
+          <th id="th-last"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
+            Last Race <span>${tourneySort.key==='last'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-races"  class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
-            Races <span>${tourneySort.races?'▲':'▼'}</span>
+          <th id="th-races" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
+            Races <span>${tourneySort.key==='races'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
         </tr>`;
       ['join','last','races'].forEach(k=>{
-        document.getElementById(`th-${k}`)
-                .onclick = ()=>{ tourneySort[k]=!tourneySort[k]; render(); };
+        document.getElementById(`th-${k}`).onclick = ()=>{
+          if(tourneySort.key===k) tourneySort.dir *= -1;
+          else { tourneySort.key = k; tourneySort.dir = 1; }
+          render();
+        };
       });
     }
     function renderTourneyBody(){
       let rows = [...data.board];
-      ['join','last','races'].forEach(k=>{
-        if(tourneySort[k]){
-          const dir = tourneySort[k]?1:-1;
-          rows.sort((a,b)=>
-            dir*((k==='races'?a.delta:a[k]) - (k==='races'?b.delta:b[k]))
-          );
-        }
+      rows.sort((a,b)=>{
+        const ak = tourneySort.key==='races' ? a.delta : a[tourneySort.key]||0;
+        const bk = tourneySort.key==='races' ? b.delta : b[tourneySort.key]||0;
+        return tourneySort.dir * (ak - bk);
       });
-
       const tb = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      let lastD=null, lastR=0;
+      let lastVal=null, lastRank=0;
       rows.forEach((it,i)=>{
-        const rank = (it.delta!==lastD)?i+1:lastR;
-        lastD=it.delta; lastR=rank;
+        const val = tourneySort.key==='races' ? it.delta : it[tourneySort.key]||0;
+        const rank = val!==lastVal ? i+1 : lastRank;
+        lastVal = val; lastRank = rank;
+
         let base='', hover='hover:bg-slate-700';
         if(rank===1){ base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
@@ -339,22 +313,16 @@
         let label = it.role.charAt(0).toUpperCase()+it.role.slice(1);
         if(key==='vicecaptain') label='Vice Captain';
 
-        const jd = it.joinStamp
-          ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
-        const ld = it.lastActivity
-          ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
+        const jd = it.joinStamp ? new Date(it.joinStamp*1000).toLocaleDateString() : 'N/A';
+        const ld = it.lastActivity ? new Date(it.lastActivity*1000).toLocaleDateString() : 'N/A';
 
-        const tc = rank<=3?'text-yellow-400/70':'text-gray-400';
-        const tht= it.title
-          ? `<div class="text-xs ${tc} mt-1">${it.title}</div>`
-          : '';
+        const tc = rank<=3 ? 'text-yellow-400/70' : 'text-gray-400';
+        const tht= it.title ? `<div class="text-xs ${tc} mt-1">${it.title}</div>` : '';
 
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
-        tr.onclick = ()=>window.open(
-          `https://www.nitrotype.com/racer/${it.username}`, '_blank'
-        );
-        tr.title = 'View Nitro Type profile';
+        tr.onclick = ()=> window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
+        tr.title   = 'View Nitro Type profile';
         tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
           <td class="px-4 py-3 text-yellow-300 font-semibold">
@@ -373,9 +341,7 @@
       });
     }
 
-    // --------------------
-    // Streaks renderers
-    // --------------------
+    // Streak renderers
     function renderStreakHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -383,40 +349,38 @@
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
           <th id="th-start"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
-            Start <span>${streakSort.start?'▲':'▼'}</span>
+            Start <span>${streakSort.key==='start'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
           <th id="th-end"    class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
-            End <span>${streakSort.end?'▲':'▼'}</span>
+            End <span>${streakSort.key==='end'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
           <th id="th-length" class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
-            Length <span>${streakSort.length?'▲':'▼'}</span>
+            Length <span>${streakSort.key==='length'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
         </tr>`;
       ['start','end','length'].forEach(k=>{
-        document.getElementById(`th-${k}`)
-                .onclick = ()=>{ streakSort[k]=!streakSort[k]; render(); };
+        document.getElementById(`th-${k}`).onclick = ()=>{
+          if(streakSort.key===k) streakSort.dir *= -1;
+          else { streakSort.key = k; streakSort.dir = 1; }
+          render();
+        };
       });
     }
     function renderStreakBody(){
       const list = [...(data.streaks[streakView]||[])];
-      ['start','end','length'].forEach(k=>{
-        if(streakSort[k]){
-          const dir = streakSort[k]?1:-1;
-          list.sort((a,b)=>{
-            const va = (k==='length'?a.length:(a[k]||0));
-            const vb = (k==='length'?b.length:(b[k]||0));
-            return dir*(va - vb);
-          });
-        }
+      list.sort((a,b)=>{
+        let av = streakSort.key==='length' ? a.length : (a[streakSort.key]||0);
+        let bv = streakSort.key==='length' ? b.length : (b[streakSort.key]||0);
+        return streakSort.dir * (av - bv);
       });
-
       const tb = document.getElementById('leaderboard-body');
       tb.innerHTML = '';
-      let lastV=null, lastR=0;
+      let lastVal=null, lastRank=0;
       list.forEach((it,i)=>{
-        const val  = it.length;
-        const rank = (val!==lastV)?i+1:lastR;
-        lastV=val; lastR=rank;
+        const val = streakSort.key==='length' ? it.length : (it[streakSort.key]||0);
+        const rank = val!==lastVal ? i+1 : lastRank;
+        lastVal = val; lastRank = rank;
+
         let base='', hover='hover:bg-slate-700';
         if(rank===1){ base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
         else if(rank===2){ base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
@@ -443,10 +407,8 @@
 
         const tr = document.createElement('tr');
         tr.className = `cursor-pointer ${base} ${hover} align-middle`;
-        tr.onclick  = ()=>window.open(
-          `https://www.nitrotype.com/racer/${it.username}`, '_blank'
-        );
-        tr.title    = 'View Nitro Type profile';
+        tr.onclick = ()=> window.open(`https://www.nitrotype.com/racer/${it.username}`,'_blank');
+        tr.title   = 'View Nitro Type profile';
         tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
           <td class="px-4 py-3 text-yellow-300 font-semibold">
