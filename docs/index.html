@@ -75,7 +75,15 @@
         </div>
         <!-- Table container (no padding) -->
         <div id="table-container" class="table-with-suns">
-          <table class="min-w-full rounded-b-lg">
+          <table class="min-w-full rounded-b-lg table-fixed">
+            <colgroup>
+              <col style="width: 5%;" />
+              <col style="width: 30%;" />
+              <col style="width: 20%;" />
+              <col style="width: 15%;" />
+              <col style="width: 15%;" />
+              <col style="width: 15%;" />
+            </colgroup>
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
           </table>
@@ -101,7 +109,7 @@
   </div>
 
   <script>
-    // Countdown (unchanged)…
+    // Countdown (unchanged)...
     const cdEl = document.getElementById('countdown'),
           btn  = document.getElementById('toggle-countdown');
     let exact = true;
@@ -119,7 +127,7 @@
           +`${String(secs).padStart(2,'0')}`
         : days;
     }
-    btn.addEventListener('click', ()=> {
+    btn.addEventListener('click', ()=>{
       exact = !exact;
       btn.textContent = exact ? 'Show days only' : 'Show exact countdown';
       updateCd();
@@ -184,22 +192,22 @@
     }
 
     // Fetch data.json + hook tabs
-    document.addEventListener('DOMContentLoaded', ()=> {
-      document.getElementById('tab-tourney').onclick = ()=> { mode='tourney'; render(); };
-      document.getElementById('tab-streak').onclick = ()=> { mode='streak'; render(); };
-      document.getElementById('sub-current').onclick = ()=> { streakView='current'; render(); };
-      document.getElementById('sub-all').onclick     = ()=> { streakView='allTime'; render(); };
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.getElementById('tab-tourney').onclick = ()=>{ mode='tourney'; render(); };
+      document.getElementById('tab-streak').onclick = ()=>{ mode='streak'; render(); };
+      document.getElementById('sub-current').onclick = ()=>{ streakView='current'; render(); };
+      document.getElementById('sub-all').onclick     = ()=>{ streakView='allTime'; render(); };
 
       const parts = window.location.pathname.split('/'); parts.pop();
       const base  = (parts.join('/')||'/').replace(/\/$/,'');
       fetch(`${base}/data.json`)
         .then(r=> r.ok? r.json(): Promise.reject(r.status))
-        .then(d=> {
+        .then(d=>{
           data = d;
           document.getElementById('updated-at').textContent = d.last_updated||'Unknown';
           render();
         })
-        .catch(e=> {
+        .catch(e=>{
           console.error('Load error', e);
           document.getElementById('updated-at').textContent = 'Error';
         });
@@ -210,8 +218,8 @@
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
-          <th class="w-2/6 px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
-          <th class="w-1/6 px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
           <th id="th-join"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Member Since <span>${tourneySort.key==='join'?(tourneySort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
@@ -224,7 +232,7 @@
         </tr>`;
       ['join','last','races'].forEach(k=>{
         document.getElementById(`th-${k}`)
-                .onclick = ()=> {
+                .onclick = ()=>{
                   if(tourneySort.key===k) tourneySort.dir *= -1;
                   else { tourneySort.key = k; tourneySort.dir = 1; }
                   render();
@@ -234,10 +242,14 @@
     function renderTourneyBody(){
       let rows = [...data.board];
       rows.sort((a,b)=>{
-        let av=0, bv=0;
-        if(tourneySort.key==='races'){ av=a.delta; bv=b.delta; }
-        else if(tourneySort.key==='join'){ av=a.joinStamp||0; bv=b.joinStamp||0; }
-        else { av=a.lastActivity||0; bv=b.lastActivity||0; }
+        let av = 0, bv = 0;
+        if(tourneySort.key==='races'){
+          av=a.delta; bv=b.delta;
+        } else if(tourneySort.key==='join'){
+          av=a.joinStamp||0; bv=b.joinStamp||0;
+        } else if(tourneySort.key==='last'){
+          av=a.lastActivity||0; bv=b.lastActivity||0;
+        }
         return tourneySort.dir*(av - bv);
       });
 
@@ -245,11 +257,11 @@
       tb.innerHTML='';
       let lastV=null, lastR=0;
       rows.forEach((it,i)=>{
-        const val = tourneySort.key==='races' ? it.delta
-                  : tourneySort.key==='join'  ? it.joinStamp||0
-                  : it.lastActivity||0;
+        const val = (tourneySort.key==='races'? it.delta :
+                    tourneySort.key==='join'? it.joinStamp||0 :
+                    it.lastActivity||0);
         const rank = val!==lastV? i+1 : lastR;
-        lastV = val; lastR = rank;
+        lastV = val; lastR=rank;
 
         let base='', hover='hover:bg-slate-700';
         if(rank===1){ base='bg-yellow-400/20'; hover='hover:bg-yellow-400/10'; }
@@ -289,8 +301,10 @@
         tr.title='View Nitro Type profile';
         tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
-          <td class="w-2/6 px-4 py-3 text-yellow-300 font-semibold">${it.displayName}${tht}</td>
-          <td class="w-1/6 px-4 py-3">
+          <td class="px-4 py-3 text-yellow-300 font-semibold">
+            ${it.displayName}${tht}
+          </td>
+          <td class="px-4 py-3">
             <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">
               ${label}
             </span>
@@ -308,8 +322,8 @@
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
-          <th class="w-2/6 px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
-          <th class="w-1/6 px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
           <th id="th-start"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Start <span>${streakSort.key==='start'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
@@ -321,7 +335,7 @@
           </th>
         </tr>`;
       ['start','end','length'].forEach(k=>{
-        document.getElementById(`th-${k}`).onclick = ()=> {
+        document.getElementById(`th-${k}`).onclick = ()=>{
           if(streakSort.key===k) streakSort.dir *= -1;
           else { streakSort.key=k; streakSort.dir=1; }
           render();
@@ -331,10 +345,14 @@
     function renderStreakBody(){
       const list = [...(data.streaks[streakView]||[])];
       list.sort((a,b)=>{
-        let av=0, bv=0;
-        if(streakSort.key==='length'){ av=a.length; bv=b.length; }
-        else if(streakSort.key==='start'){ av=a.start||0; bv=b.start||0; }
-        else { av=a.end||0; bv=b.end||0; }
+        let av = 0, bv = 0;
+        if(streakSort.key==='length'){
+          av=a.length; bv=b.length;
+        } else if(streakSort.key==='start'){
+          av=a.start||0; bv=b.start||0;
+        } else {
+          av=a.end||0; bv=b.end||0;
+        }
         return streakSort.dir*(av - bv);
       });
 
@@ -362,7 +380,7 @@
         const rc = {
           officer:     'border-2 border-blue-400 text-blue-400 bg-transparent',
           captain:     'border-2 border-purple-400 text-purple-400 bg-transparent',
-          vicecaptain:'border-2 border-green-400 text-green-400 bg-transparent',
+          vicecaptain: 'border-2 border-green-400 text-green-400 bg-transparent',
           member:      'text-gray-400'
         };
         const badge = rc[key]||rc.member;
@@ -384,8 +402,10 @@
         tr.title='View Nitro Type profile';
         tr.innerHTML=`
           <td class="px-4 py-3">${ord}</td>
-          <td class="w-2/6 px-4 py-3 text-yellow-300 font-semibold">${it.displayName}${tht}</td>
-          <td class="w-1/6 px-4 py-3">
+          <td class="px-4 py-3 text-yellow-300 font-semibold">
+            ${it.displayName}${tht}
+          </td>
+          <td class="px-4 py-3">
             <span class="px-2 py-0.5 rounded ${badge} text-xs font-medium">
               ${label}
             </span>
