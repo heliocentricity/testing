@@ -54,7 +54,17 @@
       </div>
 
       <!-- Panel under tabs -->
-      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg oferflow-x-auto overflow-y visible w-full">
+      <div class="bg-slate-800 border border-slate-700 border-t-0
+            rounded-bl-lg rounded-br-lg rounded-tr-lg
+
+            /* 1. allow horizontal scrolling inside this panel */
+            overflow-x-auto overflow-y-visible
+
+            /* 2. fill 75% column but stop flex from shrinking it */
+            w-full flex-shrink-0
+
+            /* 3. never get any thinner than the table’s natural width */
+            min-w-max">
         <!-- Sub-tabs header -->
         <div id="subtabs" class="relative flex border-b border-slate-700 px-4 py-2">
           <!-- Tournament date -->
