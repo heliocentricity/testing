@@ -12,9 +12,7 @@
     th.sortable { cursor: pointer; user-select: none; }
     .table-with-suns {
       position: relative;
-      overflow-x: auto;      /* allow horizontal scrolling */
-      overflow-y: visible;   /* keep suns-tooltip overflow */
-      min-width: max-content;
+      overflow: visible;    /* allow the tooltip to show */
     }
     .table-with-suns::after {
       content: '';
@@ -54,7 +52,7 @@
       </div>
 
       <!-- Panel under tabs -->
-      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg oferflow-x-auto overflow-y visible w-full">
+      <div class="bg-slate-800 border border-slate-700 border-t-0 rounded-bl-lg rounded-br-lg rounded-tr-lg overflow-visible">
         <!-- Sub-tabs header -->
         <div id="subtabs" class="relative flex border-b border-slate-700 px-4 py-2">
           <!-- Tournament date -->
@@ -78,15 +76,15 @@
           <!-- Question-mark icon, only for streaks -->
           <span id="tooltip-icon" class="hidden absolute right-2 top-1/2 transform -translate-y-1/2 group inline-block">
             <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">?</span>
-            <span class="hidden group-hover:block absolute right-full bottom-1 mr-2 w-72 p-2 text-xs text-gray-300 bg-slate-800 border-2 border-yellow-400 rounded-lg whitespace-normal z-50">
-              A streak is the number of consecutive days a player has logged in and completed at least one race. Each day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
+            <span class="hidden group-hover:block absolute right-full bottom-1 -mr-1 w-48 h-16 p-2 text-xs text-gray-300 bg-slate-800 border-2 border-yellow-400 rounded-lg whitespace-normal z-50">
+              A day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
             </span>
           </span>
         </div>
 
         <!-- Table container with sun background -->
-        <div id="table-container" class="table-with-suns overflow-x-auto overflow-y-visible min-w-max">
-          <table class="w-full min-w-max table-auto">
+        <div id="table-container" class="table-with-suns">
+          <table class="min-w-full">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
           </table>
@@ -97,7 +95,7 @@
     <!-- RIGHT: Info Boxes -->
     <div class="w-1/4 space-y-6">
       <div class="bg-slate-800 border-2 border-yellow-400 rounded-lg p-4 text-center">
-        <div id="countdown" class="text-[clamp(0.5rem,3vw,2.25rem)] font-extrabold text-yellow-400 mb-1"></div>
+        <div id="countdown" class="text-4xl font-extrabold text-yellow-400 mb-1"></div>
         <div class="text-sm text-yellow-400 mb-2">days left in tournament</div>
         <button id="toggle-countdown"
                 class="px-2 py-0.5 bg-gray-700 text-xs rounded mt-1">
@@ -112,8 +110,7 @@
         <h2 class="text-lg font-semibold text-yellow-400 mb-2">Prizes</h2>
         <p class="text-sm">
           <span class="text-yellow-400 font-bold">1st</span> - 
-          <span class="text-green-400 font-semibold">$10,000,000 NITRO CASH</span>
-          <span class="text-white-400 font-semibold"> [NEW!]</span><br>
+          <span class="text-green-400 font-semibold">$10,000,000 NITRO CASH</span><br>
           <span class="text-yellow-400 font-bold">2nd</span> - 
           <span class="text-green-400 font-semibold">$5,000,000 NITRO CASH</span><br>
           <span class="text-yellow-400 font-bold">3rd</span> - 
@@ -292,7 +289,7 @@
       }
     }
 
-    // --- Tournament Head & Body ---
+    // --- Tournament Head & Body (unchanged) ---
     function renderTourneyHead(){
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
@@ -335,14 +332,14 @@
         else if (rank===2) { base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if (rank===3) { base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
         let ord = `${rank}`;
-        if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline max-w-none"/>`;
-        if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline max-w-none"/>`;
-        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline max-w-none"/>`;
+        if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
+        if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
+        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
-          officer:    'inline-block border-2  border-blue-400 text-blue-400 bg-transparent',
-          captain:    'inline-block border-2  border-purple-400 text-purple-400 bg-transparent',
-          vicecaptain:'inline-block border-2  border-green-400 text-green-400 bg-transparent',
+          officer:    'border-2 border-blue-400 text-blue-400 bg-transparent',
+          captain:    'border-2 border-purple-400 text-purple-400 bg-transparent',
+          vicecaptain:'border-2 border-green-400 text-green-400 bg-transparent',
           member:     'text-gray-400'
         };
         const badge = rc[key] || rc.member;
@@ -377,18 +374,18 @@
       document.getElementById('leaderboard-head').innerHTML = `
         <tr>
           <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">#</th>
-          <th class="px-4 py-3 text-left text-sm	font-medium text-gray-300">Name & Title</th>
-          <th class="px-4 py-3 text-left text-sm	font-medium text-gray-300">Role</th>
-          <th id="th-done"   class="px-4 py-3 text-center text-sm	font-medium text-gray-300 sortable">
-            Today <span>${streakSort.key==='done'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Name & Title</th>
+          <th class="px-4 py-3 text-left text-sm font-medium text-gray-300">Role</th>
+          <th id="th-done"   class="px-4 py-3 text-center text-sm font-medium text-gray-300 sortable">
+            Done Today <span>${streakSort.key==='done'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-start"  class="px-4 py-3 text-left text-sm	font-medium text-gray-300 sortable">
+          <th id="th-start"  class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             Start <span>${streakSort.key==='start'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-end"    class="px-4 py-3 text-left text-sm	font-medium text-gray-300 sortable">
+          <th id="th-end"    class="px-4 py-3 text-left text-sm font-medium text-gray-300 sortable">
             End <span>${streakSort.key==='end'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
-          <th id="th-length"class="px-4 py-3 text-right text-sm	font-medium text-gray-300 sortable">
+          <th id="th-length"class="px-4 py-3 text-right text-sm font-medium text-gray-300 sortable">
             Length <span>${streakSort.key==='length'?(streakSort.dir>0?'▲':'▼'):'▼'}</span>
           </th>
         </tr>`;
@@ -407,7 +404,10 @@
         if (streakSort.key==='length') { av=a.length; bv=b.length; }
         else if (streakSort.key==='start') { av=a.start||0; bv=b.start||0; }
         else if (streakSort.key==='end') { av=a.end||0; bv=b.end||0; }
-        else { av = a.racedToday ? 1 : 0; bv = b.racedToday ? 1 : 0; }
+        else { // done
+          av = a.racedToday ? 1 : 0;
+          bv = b.racedToday ? 1 : 0;
+        }
         return streakSort.dir * (av - bv);
       });
       const tb = document.getElementById('leaderboard-body');
@@ -419,14 +419,14 @@
         else if (rank===2) { base='bg-yellow-500/20'; hover='hover:bg-yellow-500/10'; }
         else if (rank===3) { base='bg-yellow-600/20'; hover='hover:bg-yellow-600/10'; }
         let ord = `${rank}`;
-        if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline max-w-none"/>`;
-        if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline max-w-none"/>`;
-        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline max-w-none"/>`;
+        if (rank===1) ord = `<img src="assets/1st.png" alt="1st" class="h-6 inline"/>`;
+        if (rank===2) ord = `<img src="assets/2nd.png" alt="2nd" class="h-6 inline"/>`;
+        if (rank===3) ord = `<img src="assets/3rd.png" alt="3rd" class="h-6 inline"/>`;
         const key = it.role.toLowerCase().replace(/\s+/g,'');
         const rc = {
-          officer:    'inline-block border-2  border-blue-400 text-blue-400 bg-transparent',
-          captain:    'inline-block border-2  border-purple-400 text-purple-400 bg-transparent',
-          vicecaptain:'inline-block border-2  border-green-400 text-green-400 bg-transparent',
+          officer:    'border-2 border-blue-400 text-blue-400 bg-transparent',
+          captain:    'border-2 border-purple-400 text-purple-400 bg-transparent',
+          vicecaptain:'border-2 border-green-400 text-green-400 bg-transparent',
           member:     'text-gray-400'
         };
         const badge = rc[key] || rc.member;
@@ -435,7 +435,7 @@
         const sd = it.start ? new Date(it.start).toLocaleDateString() : 'N/A';
         const ed = it.end   ? new Date(it.end).toLocaleDateString()   : 'N/A';
         const tc = rank <= 3 ? 'text-yellow-400/70' :'text-gray-400';
-        const titleHtml = it.title ? `<div class="text-xs ${tc}	mt-1">${it.title}</div>`:'';
+        const titleHtml = it.title ? `<div class="text-xs ${tc} mt-1">${it.title}</div>`:'';
         const done = it.racedToday
           ? '<span class="text-green-400">✓</span>'
           : '<span class="text-gray-500">-</span>';
