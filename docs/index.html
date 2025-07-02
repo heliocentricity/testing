@@ -28,6 +28,14 @@
     .table-with-suns tr { position: relative; z-index: 0; }
     .table-with-suns th,
     .table-with-suns td { position: relative; z-index: 2; }
+    #tooltip-icon {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0.5rem;    
+      right: 0.5rem;           
+      z-index: 20;    
+    }
+
   </style>
 </head>
 <body class="bg-slate-900 text-gray-200 font-sans min-h-screen p-8">
@@ -75,6 +83,10 @@
               All Time
             </button>
           </div>
+        </div>
+
+        <!-- Table container with sun background -->
+        <div id="table-container" class="table-with-suns overflow-x-auto overflow-y-visible w-full">
           <!-- Question-mark icon, only for streaks -->
           <span id="tooltip-icon" class="hidden absolute right-2 top-1/2 transform -translate-y-1/2 group inline-block">
             <span class="block w-5 h-5 rounded-full bg-gray-600 text-gray-400 flex items-center justify-center text-xs font-bold cursor-default">?</span>
@@ -82,10 +94,6 @@
               A streak is the number of consecutive days a player has logged in and completed at least one race. Each day ends at approximately 12:00 AM PST/PDT. Check back in an hour or two if you've raced today but your streak hasn't updated yet.
             </span>
           </span>
-        </div>
-
-        <!-- Table container with sun background -->
-        <div id="table-container" class="table-with-suns overflow-x-auto overflow-y-visible w-full">
           <table class="w-full min-w-max table-auto">
             <thead id="leaderboard-head" class="bg-slate-700"></thead>
             <tbody id="leaderboard-body" class="divide-y divide-slate-700"></tbody>
